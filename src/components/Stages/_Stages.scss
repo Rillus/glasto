@@ -1,0 +1,16 @@
+.Stages {
+  margin: auto;
+  text-align: center;
+  display: grid;
+  justify-content: space-evenly;
+  align-items: center;
+  justify-items: stretch;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+
+  .StageChip {
+    a {
+      width: calc(100% - 20px);
+    }
+  }
+}

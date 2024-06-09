@@ -1,0 +1,67 @@
+@import "../../styles/variables";
+
+.StageChip {
+  display: inline-block;
+
+  a,
+  a:visited,
+  a:hover {
+      //color: var(--white);
+      text-decoration: none;
+  }
+
+  &-name {
+    padding: #{$spacer / 4} #{$spacer};
+    border-radius: 5px;
+    border: 1px solid var(--white);
+    display: inline-block;
+    line-height: 30px;
+    margin: $spacer/2 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--white);
+
+    h1 & {
+      padding: #{$spacer} #{$spacer * 1.5};
+      margin: auto;
+      border-width: 2px;
+      border-radius: 7px;
+    }
+
+    @for $i from 1 through 14 {
+      &--#{$i} {
+        background-color: var(--stage#{$i});
+      }
+
+      @for $j from 15 through 39 {
+        &--#{$j} {
+          background-color: hsl($i * $j, 255, 70);
+          color: var(--black);
+        }
+      }
+
+      @for $k from 40 through 64 {
+        &--#{$k} {
+          background-color: hsl($i * $k, 255, 30);
+        }
+      }
+
+      @for $l from 65 through 98 {
+        &--#{$l} {
+          background-color: hsl($i * $l, 100, 50);
+          //border-color: var(--black);
+          text-shadow: 1px 1px 3px var(--black), 0 0 4px var(--black);
+        }
+      }
+
+      //@for $m from 99 through 120 {
+      //  &--#{$m} {
+      //    background-color: hsl($i * $m, 255, 70);
+      //    //border-color: var(--black);
+      //    text-shadow: 1px 1px 3px var(--black), 0px 0px 4px var(--black);
+      //  }
+      //}
+    }
+
+  }
+}

@@ -1,0 +1,91 @@
+@import "../variables";
+
+.Grid {
+  display: grid;
+
+  &-row {
+    display: flex;
+    column-gap: $spacer;
+    justify-content: space-between;
+
+    .ActChip {
+      flex: auto;
+    }
+
+    .DateChip {
+      width: auto;
+    }
+
+    @media (max-width: $break-md) {
+      flex-wrap: wrap;
+      border-bottom: 1px dashed var(--currentContrast);
+
+      .DateChip {
+        width: 100%;
+        margin: auto;
+        display: flex;
+        align-items: center;
+
+        & > * {
+          width: 32%;
+        }
+
+        &-until {
+          width: auto;
+          flex-basis: content;
+        }
+      }
+
+      .ActChip {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: $break-xs) {
+      .DateChip {
+        & > * {
+          width: auto;
+        }
+      }
+    }
+  }
+
+  &--showStage {
+    .Grid-row {
+      display: flex;
+      column-gap: $spacer;
+      justify-content: space-between;
+
+      .StageChip {
+        width: 200px;
+        margin-left: auto;
+        align-self: center;
+      }
+
+      .ActChip {
+        flex: auto;
+      }
+
+      @media (max-width: $break-md) {
+        .StageChip {
+          flex: auto;
+        }
+      }
+    }
+
+    .StageChip-name {
+      width: calc(100% - 20px);
+      text-align: center;
+    }
+  }
+
+  .ActChip {
+
+  }
+
+  .DateChip {
+    justify-self: end;
+    text-align: right;
+    align-self: center;
+  }
+}

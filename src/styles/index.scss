@@ -1,0 +1,34 @@
+@import "variables.scss";
+@import "base";
+@import "components/ActChip";
+@import "components/Button";
+@import "components/ButtonGroup";
+@import "components/Changelog";
+@import "components/DateChip";
+@import "components/Grid";
+@import "components/Header";
+@import "components/Input";
+@import "components/Main";
+@import "components/Notes";
+@import "components/Search";
+@import "components/StageList";
+@import "utilities";
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: url('../../public/images/pyramid-sunset-blur-dark.jpg') no-repeat center center fixed var(--background);
+    background-size: cover;
+    color: var(--backgroundContrast);
+    margin: 0;
+
+}
+
+a {
+    color: $white;
+}
