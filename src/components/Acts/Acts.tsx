@@ -5,6 +5,7 @@ import styles from "./Acts.module.scss";
 
 // import types
 import {Act, Data} from "../../../types/act";
+import {useParams} from "react-router-dom";
 
 interface ActsProps {
   data: Data;
@@ -21,9 +22,18 @@ const Acts: React.FC<ActsProps> = ({data}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [acts, setActs] = useState<Act[]>([]);
   const [actGridOptions] = useState({showStages: true});
-  const [selectedDay, setSelectedDay] = useState('wed');
-  const [search, setSearch] = useState('');
-  const [page, setPage] = useState(1);
+  const [selectedDay, setSelectedDay] = useState<string>(useParams().day ?? 'wed');
+  const [search, setSearch] = useState<string>(useParams().search ?? '');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
+  let defaultPageAsString = useParams().page;
+  let defaultPage: number;
+  if (defaultPageAsString === undefined) {
+    defaultPage = 1;
+  } else {
+    defaultPage = parseInt(defaultPageAsString);
+  }
+  const [page, setPage] = useState<number>(defaultPage);
 
   const take = 20;
 
@@ -60,30 +70,30 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     }
   }, []);
 
+  // This useEffect hook is used to update the page, search and selectedDay in the URL
   useEffect(() => {
     // get page, search and selectedDay from url
-    const urlParams = new URLSearchParams(window.location.search);
-    const pageParam = urlParams.get('page');
-    let searchParam = urlParams.get('search');
-    const selectedDayParam = urlParams.get('selectedDay');
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const pageParam = urlParams.get('page');
+    //
+    // if (pageParam) {
+    //   setPage(parseInt(pageParam));
+    // }
 
-    if (pageParam) {
-      setPage(parseInt(pageParam));
-    }
+    // if (searchParam && searchParam !== 'null') {
+    //   setSearch(searchParam);
+    // } else {
+    //   searchParam = '';
+    // }
 
-    if (searchParam && searchParam !== 'null') {
-      setSearch(searchParam);
-    } else {
-      searchParam = '';
-    }
+    // if (selectedDayParam) {
+    //   setSelectedDay(selectedDayParam);
+    // }
 
-    if (selectedDayParam) {
-      setSelectedDay(selectedDayParam);
-    }
+    window.history.pushState({}, '', `?page=${page}&search=${search}&selectedDay=${selectedDay}`);
+  }, [setPage, page, selectedDay, search, setSearch]);
 
-    window.history.pushState({}, '', `?page=${page}&search=${searchParam}&selectedDay=${selectedDay}`);
-  }, [setPage, page, selectedDay, setSearch]);
-
+  // This useEffect hook is used to filter the acts based on the search, selectedDay and page
   useEffect(() => {
     const dataActs = data.locations
       .map((location, locationIndex) => {
@@ -111,12 +121,8 @@ const Acts: React.FC<ActsProps> = ({data}) => {
         const actStart = new Date(act.start);
         let returnAct = false;
 
-        if (selectedDay === '') {
-          return false;
-        }
-
         // ensure day is selected
-        if (selectedDay.split(',').length === 0) {
+        if (selectedDay.split(',').length === 0 || selectedDay === '') {
           return false;
         }
 
@@ -139,12 +145,27 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     // console.log('allActs', allActs.slice((page - 1) * take, page * take));
     const updatedActs: Act[] = allActs.slice((page - 1) * take, page * take);
     setActs(updatedActs);
+    if (allActs.length === 0) {
+      setErrorMessage('No results found');
+    }
   }, [data, selectedDay, search, page, dayTimes]);
 
   function toggleDay(day: string) {
-    // there can be only be one selected day
-    let selectedDay = day;
-    setSelectedDay(selectedDay);
+    // selectedDay can be a comma separated list of days
+    let newSelectedDay = selectedDay;
+    let currentlySelectedDays = selectedDay.split(',');
+
+    // if the day is already selected, remove it
+    if (currentlySelectedDays.includes(day)) {
+      if (currentlySelectedDays.length > 1) {
+        newSelectedDay = currentlySelectedDays.filter((d) => d !== day).join(',');
+      }
+    } else {
+      // if the day is not selected, add it
+      newSelectedDay = currentlySelectedDays.concat(day).join(',');
+    }
+
+    setSelectedDay(newSelectedDay);
     window.history.pushState({}, '', `?page=${page}&search=${search}&selectedDay=${selectedDay}`);
   }
 
@@ -154,8 +175,9 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     let dayClass = (day: string) => {
       let daySelectorClass = 'Button DateChip-day DateChip-day--';
       daySelectorClass += day;
-      // cycle through selectedDays and see if this day is in there
-      if (selectedDay !== day) {
+
+      // if the day is selected, add the active class
+      if (!selectedDay.split(',').includes(day)) {
         daySelectorClass += ' isInactive';
       }
 
@@ -178,32 +200,40 @@ const Acts: React.FC<ActsProps> = ({data}) => {
 
   return <div>
       <div className={"Search"}>
-        Search:
         <input
           className={"Input"}
           type={"text"}
           id={"actSearch"}
           aria-label={"Search for an act"}
           placeholder={"Search for an act. Minimum 3 characters. Searches on full words only. i.e. 'The' will not return 'Theatre'"}
+          value={search}
           onChange={(e) => {
+            setSearch(e.target.value)
             if (e.target.value.length === 0) {
               if (acts.length === 0){
                 setIsLoading(true)
               }
             } else if (e.target.value.length >= 3) {
               // setIsLoading(true)
-              const search = e.target.value;
-              console.log('search:', search);
-              setSearch(search);
             } else {
-              console.log('3 or more characters required');
               setIsLoading(false)
+              setErrorMessage('3 or more characters required to search');
               setActs([]);
             }
           }}
         />
 
         <DaySelector />
+
+        <button
+          className={`Button ${styles.Acts_clearButton}`}
+          onClick={() => {
+            setSearch('');
+            setSelectedDay('wed');
+          }}
+        >
+          &times;
+        </button>
       </div>
 
       <ActGrid
@@ -212,8 +242,11 @@ const Acts: React.FC<ActsProps> = ({data}) => {
 
       <div className={styles.Acts_noResultsWrapper}>
         <div className={styles.Acts_noResultsInner}>
-          {acts.length === 0 && (
-            <p className={styles.Acts_noResults_text}>No acts found.</p>
+          {errorMessage && (
+            <p
+              className={styles.Acts_noResults_text}>
+              {errorMessage}
+            </p>
           )}
           {isLoading &&
             (

@@ -140,7 +140,6 @@ describe('Acts component', () => {
         <Acts data={actsData} />
       </BrowserRouter>
     );
-    screen.debug();
     const acts = screen.getAllByText('The Sky at Day');
     expect(acts).not.toBeNull();
   });
@@ -159,5 +158,50 @@ describe('Acts component', () => {
       const acts = screen.queryAllByText('Yoga like water');
       expect(acts).not.toHaveLength(0);
     });
+  });
+
+  it ('should show no results if search input does not match any act', () => {
+    render(
+      <BrowserRouter>
+        <Acts data={actsData} />
+      </BrowserRouter>
+    );
+    const searchBar: HTMLInputElement = screen.getByLabelText('Search for an act');
+    fireEvent.change(searchBar, { target: { value: 'Yoga like fire' } });
+
+    expect(searchBar.value).toBe('Yoga like fire');
+    const noResults = screen.getByText(/No results found/i);
+    expect(noResults).toBeInTheDocument();
+  });
+
+  it ('should clear search input when clear button is clicked', () => {
+    render(
+      <BrowserRouter>
+        <Acts data={actsData} />
+      </BrowserRouter>
+    );
+    const searchBar: HTMLInputElement = screen.getByLabelText('Search for an act');
+    fireEvent.change(searchBar, { target: { value: 'Yoga like water' } });
+
+    expect(searchBar.value).toBe('Yoga like water');
+    const clearButton = screen.getByText('×');
+    fireEvent.click(clearButton);
+
+    expect(searchBar.value).toBe('');
+  });
+
+  it('should show no results if search input is less than 3 characters',  () => {
+    render(
+      <BrowserRouter>
+        <Acts data={actsData} />
+      </BrowserRouter>
+    );
+    const searchBar: HTMLInputElement = screen.getByLabelText('Search for an act');
+    fireEvent.change(searchBar, { target: { value: 'Y' } });
+
+    expect(searchBar.value).toBe('Y');
+    const noResults = screen.getByText(/3 or more characters required to search/i);
+    expect(noResults).toBeInTheDocument();
+
   });
 });
