@@ -14,7 +14,7 @@ describe('ActChip', () => {
     render(
       <BrowserRouter>
         <ActChip
-          id={'test'}
+          short={'TST'}
           isSelected={false}
           name={'Test'}
         />
@@ -27,7 +27,7 @@ describe('ActChip', () => {
     render(
       <BrowserRouter>
         <ActChip
-          id={'test'}
+          short={'TST'}
           isSelected={false}
           name={'Test'}
         />
@@ -44,7 +44,7 @@ describe('ActChip', () => {
     render(
       <BrowserRouter>
         <ActChip
-          id={'test'}
+          short={'TST'}
           isSelected={true}
           name={'Test'}
         />
@@ -52,14 +52,14 @@ describe('ActChip', () => {
     );
 
     fireEvent.click(screen.getByLabelText('Add to lineup'));
-    expect(document.cookie).toContain('act_test');
+    expect(localStorage.getItem('act_TST')).toEqual('true');
   });
 
   it('removes the selected act from localStorage', () => {
     render(
       <BrowserRouter>
         <ActChip
-          id={'test'}
+          short={'TST'}
           isSelected={true}
           name={'Test'}
         />
@@ -67,15 +67,15 @@ describe('ActChip', () => {
     );
 
     fireEvent.click(screen.getByLabelText('Remove from lineup'));
-    expect(document.cookie).toContain('act_test=false');
+    expect(localStorage.getItem('act_TST')).toEqual('false');
   });
 
   it('checks if act is in lineup', () => {
-    document.cookie = 'act_test=true';
+    localStorage.setItem('act_TST', 'true');
     render(
       <BrowserRouter>
         <ActChip
-          id={'test'}
+          short={'TST'}
           isSelected={true}
           name={'Test'}
         />

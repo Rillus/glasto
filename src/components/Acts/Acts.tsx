@@ -4,7 +4,7 @@ import {Loader} from "../Loader";
 import styles from "./Acts.module.scss";
 
 // import types
-import {Act, Data} from "../../../types/act";
+import {EventType, Data} from "../../../types/act";
 import {useParams} from "react-router-dom";
 
 interface ActsProps {
@@ -20,7 +20,7 @@ interface DayTimes {
 
 const Acts: React.FC<ActsProps> = ({data}) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [acts, setActs] = useState<Act[]>([]);
+  const [acts, setActs] = useState<EventType[]>([]);
   const [actGridOptions] = useState({showStages: true});
   const [selectedDay, setSelectedDay] = useState<string>(useParams().day ?? 'wed');
   const [search, setSearch] = useState<string>(useParams().search ?? '');
@@ -72,24 +72,6 @@ const Acts: React.FC<ActsProps> = ({data}) => {
 
   // This useEffect hook is used to update the page, search and selectedDay in the URL
   useEffect(() => {
-    // get page, search and selectedDay from url
-    // const urlParams = new URLSearchParams(window.location.search);
-    // const pageParam = urlParams.get('page');
-    //
-    // if (pageParam) {
-    //   setPage(parseInt(pageParam));
-    // }
-
-    // if (searchParam && searchParam !== 'null') {
-    //   setSearch(searchParam);
-    // } else {
-    //   searchParam = '';
-    // }
-
-    // if (selectedDayParam) {
-    //   setSelectedDay(selectedDayParam);
-    // }
-
     window.history.pushState({}, '', `?page=${page}&search=${search}&selectedDay=${selectedDay}`);
   }, [setPage, page, selectedDay, search, setSearch]);
 
@@ -110,7 +92,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
       .flat();
     // console.log('data', dataActs);
 
-    const allActs: Act[] = dataActs
+    const allActs: EventType[] = dataActs
       .filter((act) => {
         if (search) {
           return act.name.toLowerCase().includes(search.toLowerCase());
@@ -143,7 +125,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
       });
 
     // console.log('allActs', allActs.slice((page - 1) * take, page * take));
-    const updatedActs: Act[] = allActs.slice((page - 1) * take, page * take);
+    const updatedActs: EventType[] = allActs.slice((page - 1) * take, page * take);
     setActs(updatedActs);
     if (allActs.length === 0) {
       setErrorMessage('No results found');
@@ -215,6 +197,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
               }
             } else if (e.target.value.length >= 3) {
               // setIsLoading(true)
+              setErrorMessage('');
             } else {
               setIsLoading(false)
               setErrorMessage('3 or more characters required to search');
@@ -237,7 +220,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
       </div>
 
       <ActGrid
-        data={acts}
+        events={acts}
         options={actGridOptions} />
 
       <div className={styles.Acts_noResultsWrapper}>

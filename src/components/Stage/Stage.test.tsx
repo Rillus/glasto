@@ -60,7 +60,6 @@ describe("Stage", () => {
         ],
       },
     ],
-    acts: [],
   };
 
   it("should render the stage", async () => {

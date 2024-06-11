@@ -8,13 +8,16 @@ test('renders the main menu', () => {
       <App />
     </BrowserRouter>
   );
-  const linkElement = screen.getByText(/Stages/i);
-  expect(linkElement).toBeInTheDocument();
+  const myLineupLink = screen.getByRole('link', {name: /My Lineup/i});
+  expect(myLineupLink).toBeInTheDocument();
 
-  const link2Element = screen.getByText(/Acts/i);
-  expect(link2Element).toBeInTheDocument();
+  const stagesLink = screen.getByRole('link', {name: /Stages/i});
+  expect(stagesLink).toBeInTheDocument();
 
-  const link3Element = screen.getByText(/Maps/i);
-  expect(link3Element).toBeInTheDocument();
+  const actsLink = screen.getByRole('link', {name: /Acts/i});
+  expect(actsLink).toBeInTheDocument();
+
+  const mapsLink = screen.getByRole('link', {name: /Maps/i});
+  expect(mapsLink).toBeInTheDocument();
 
 });

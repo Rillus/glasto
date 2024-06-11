@@ -2,26 +2,37 @@ interface Location {
   events: any;
   id: number;
   name: string;
+  events?: EventType[];
 }
 
-interface Act {
-  id: number;
+interface ActType {
+  id?: number;
   name: string;
-  description: string;
-  image: string;
-  spotify: string;
-  youtube: string;
-  instagram: string;
-  facebook: string;
-  twitter: string;
-  soundcloud: string;
-  website: string;
-  stage: number;
+  url?: string;
+  description?: string;
+  short: string;
+  image?: string;
+  spotify?: string;
+  youtube?: string;
+  instagram?: string;
+  facebook?: string;
+  twitter?: string;
+  soundcloud?: string;
+  website?: string;
+  stage?: number;
+  events?: EventType[];
 }
 
 interface Data {
   locations: Location[];
-  acts: Act[];
 }
 
-export {Act, ActsProps, Data, Location};
+interface EventType extends ActType {
+  url?: string;
+  start: string;
+  end: string;
+  events?: EventType[];
+  location?: Location;
+}
+
+export {ActType, ActsProps, Data, Location, EventType};

@@ -7,6 +7,7 @@ import Intro from "./components/Intro/Intro";
 import Stages from "./components/Stages/Stages";
 import Stage from "./components/Stage/Stage";
 import Acts from "./components/Acts/Acts";
+import Act from "./components/Act/Act";
 import Maps from "./components/Maps/Maps";
 
 // data provider for the app
@@ -17,9 +18,9 @@ function App() {
   const routeArray = [
     {
       path: '/',
-      element: <Intro />,
-      name: 'Home',
-      inNav: false,
+      element: <Intro data={data} />,
+      name: 'My Lineup',
+      inNav: true,
       isActive: true
     },
     {
@@ -41,6 +42,13 @@ function App() {
       element: <Acts data={data} />,
       name: 'Acts',
       inNav: true,
+      isActive: false
+    },
+    {
+      path: '/acts/:name',
+      element: <Act data={data} />,
+      name: 'Act',
+      inNav: false,
       isActive: false
     },
     {

@@ -7,17 +7,17 @@ import {BrowserRouter} from "react-router-dom";
 const actData = [
   {
     name: "Act 1",
+    short: "act1",
     location: { name: "Stage 1", id: 1 },
     start: "2021-07-01T12:00:00Z",
     end: "2021-07-01T13:00:00Z",
-    savedAct: [],
   },
   {
     name: "Act 2",
+    short: "act2",
     location: { name: "Stage 2", id: 2 },
     start: "2021-07-01T14:00:00Z",
     end: "2021-07-01T15:00:00Z",
-    savedAct: [],
   },
 ];
 
@@ -25,7 +25,7 @@ describe("ActGrid", () => {
   it("renders a list of acts", () => {
     render(
       <BrowserRouter>
-        <ActGrid data={actData} />
+        <ActGrid events={actData} />
       </BrowserRouter>
     );
 
@@ -40,7 +40,7 @@ describe("ActGrid", () => {
     render(
       <BrowserRouter>
         <ActGrid
-          data={actData}
+          events={actData}
           options={{ showStages: true }} />
       </BrowserRouter>
     );

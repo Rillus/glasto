@@ -67,56 +67,12 @@ const actsData: Data = {
       ],
     },
   ],
-  acts: [
-    {
-      id: 1,
-      name: 'The Sky at Day',
-      description: 'The Sky at Day is a band from the UK',
-      image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
-      spotify: '',
-      youtube: '',
-      instagram: '',
-      facebook: '',
-      twitter: '',
-      soundcloud: '',
-      website: '',
-      stage: 1,
-    },
-    {
-      id: 2,
-      name: 'Yoga like water',
-      description: 'Yoga like water is a band from the UK',
-      image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
-      spotify: '',
-      youtube: '',
-      instagram: '',
-      facebook: '',
-      twitter: '',
-      soundcloud: '',
-      website: '',
-      stage: 1,
-    },
-    {
-      id: 3,
-      name: 'The Sky at Night',
-      description: 'The Sky at Night is a band from the UK',
-      image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
-      spotify: '',
-      youtube: '',
-      instagram: '',
-      facebook: '',
-      twitter: '',
-      soundcloud: '',
-      website: '',
-      stage: 1,
-    },
-  ],
 };
 
 describe('Acts component', () => {
   it('should render Acts component', () => {
     render(
-    <BrowserRouter>
+      <BrowserRouter>
         <Acts data={actsData} />
       </BrowserRouter>, {}
     );

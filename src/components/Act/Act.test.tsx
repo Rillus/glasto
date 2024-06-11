@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Stages from "./Stages";
+import Act from "./Act";
 import {BrowserRouter} from "react-router-dom";
 import {Data} from "../../../types/act";
 
@@ -19,25 +19,14 @@ const data: Data = {
   ]
 };
 
-describe("Stages", () => {
-  it("renders Stages component", () => {
+describe("Act", () => {
+  it("renders Act component", () => {
     render(
       <BrowserRouter>
-        <Stages data={data} />
+        <Act data={data} />
       </BrowserRouter>
     );
-    const stagesHeader = screen.getByText(/Stages/i);
+    const stagesHeader = screen.getByText(/Act/i);
     expect(stagesHeader).toBeInTheDocument();
-  });
-
-  it("renders the number of stages", () => {
-    render(
-      <BrowserRouter>
-        <Stages data={data} />
-      </BrowserRouter>
-    );
-    // get stages by Stage Chip class
-    const stages = screen.getAllByTestId("StageChip");
-    expect(stages).toHaveLength(data.locations.length);
   });
 });

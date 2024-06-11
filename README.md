@@ -68,3 +68,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Changelog
+### 2024-06-11: v1.1 
+- Changelog added to readme
+- Adds 'My Lineup' page, with ability to add and remove acts from your personal lineup based on localStorage. 
+- Adds 'My Lineup' link to navbar.
+- Adds tests against Intro component (My Lineup) and act saving functionality.
+- Ongoing typescript conversion.
+- New app icons designed and added.
+
+### 2024-06-10: v1.0 
+- Initial release of new React app based on last year's Remix version. 
+- Adds tests for most components and functions.
+- Adds latest lineup for 2024 added from Clashfinder General.
+- Updates dates/times the festival is on for to 2024 times.
+- Converts some files to typescript.
+- Reinstates most features from last year's app:
+  - Acts page with search and filter functionality.
+  - Individual Act pages with all performances and stages for that act.
+  - Stages page with colour-coded stages list.
+  - Individual Stage page with all acts playing on that stage.
+  - Map page with interactive map of the festival, including 'tube map' style map.
+
+# To Do
+- Ensure deep navigation works correctly - e.g. going to an act page directly from the url bar 
+- Add tests for all components and functions.
+- Complete typescript conversion.
+- Add paging to acts list - lazy load/infinite scroll.
+- Ensure day toggle on acts page works correctly: needs to show all days selected, in the order selected.
+- Count down to festival start and now/next countdowns
+- Share lineup functionality - shareable URL with lineup in query string.

@@ -34,7 +34,7 @@ function Stage(props) {
     })[0];
 
     setStage(matchingStage);
-  }, []);
+  }, [data, url]);
 
   if (!stage) {
     return <div>
@@ -47,7 +47,7 @@ function Stage(props) {
         <StageChip name={stage.name} id={stage.id} />
       </h1>
       <p>{stage.description}</p>
-      <ActGrid data={stage.events}/>
+      <ActGrid events={stage.events}/>
     </div>
 }
 
