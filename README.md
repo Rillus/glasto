@@ -70,6 +70,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 # Changelog
+### 2024-06-12: v1.2
+- Added .htaccess file: Ensures deep navigation works correctly on server - e.g. going to an act page directly from the url bar
+- Add paging to acts list - lazy load/infinite scroll.
+- Restricts day toggle to one day for more consistent behavior
+- Adds dark mode icon to app
+- Adds icon to header in place of "Glasto 2024" (for use less space and allow the nav to fit on mobile)
+
 ### 2024-06-11: v1.1 
 - Changelog added to readme
 - Adds 'My Lineup' page, with ability to add and remove acts from your personal lineup based on localStorage. 
@@ -77,6 +84,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Adds tests against Intro component (My Lineup) and act saving functionality.
 - Ongoing typescript conversion.
 - New app icons designed and added.
+#### v1.1.1
+- Meta description updated
 
 ### 2024-06-10: v1.0 
 - Initial release of new React app based on last year's Remix version. 
@@ -92,10 +101,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
   - Map page with interactive map of the festival, including 'tube map' style map.
 
 # To Do
-- Ensure deep navigation works correctly - e.g. going to an act page directly from the url bar 
 - Add tests for all components and functions.
 - Complete typescript conversion.
-- Add paging to acts list - lazy load/infinite scroll.
-- Ensure day toggle on acts page works correctly: needs to show all days selected, in the order selected.
-- Count down to festival start and now/next countdowns
+sou- Count down to festival start and now/next countdowns
 - Share lineup functionality - shareable URL with lineup in query string.

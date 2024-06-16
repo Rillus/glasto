@@ -1,10 +1,12 @@
 import React from 'react';
 import StageChip from '../StageChip/StageChip';
 
+import {Data, Location} from '../../../types/act';
+
 import './_Stages.scss';
 
-function Stages({data}) {
-  const stages = data.locations.map((location, index) => {
+function Stages({data}: {data: Data}) {
+  const stages: Location[] = data.locations.map((location, index) => {
     return {
       id: index+1,
       name: location.name,
@@ -21,7 +23,8 @@ function Stages({data}) {
           <StageChip
             key={index}
             name={stage.name}
-            id={stage.id} />
+            id={stage.id}
+          />
         ))}
       </div>
     </div>

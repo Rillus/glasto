@@ -15,6 +15,7 @@ describe("Stage", () => {
           {
             id: 1,
             name: "The Sky at Day",
+            short: 'day',
             description: "The Sky at Day is a band from the UK",
             image: "https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b",
             spotify: "",
@@ -30,6 +31,7 @@ describe("Stage", () => {
           {
             id: 2,
             name: "Yoga like water",
+            short: 'water',
             description: "Yoga like water is a band from the UK",
             image: "https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b",
             spotify: "",
@@ -45,6 +47,7 @@ describe("Stage", () => {
           {
             id: 3,
             name: "The Sky at Night",
+            short: 'night',
             description: "The Sky at Night is a band from the UK",
             image: "https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b",
             spotify: "",
@@ -59,6 +62,60 @@ describe("Stage", () => {
           },
         ],
       },
+      {
+        id: 2,
+        name: "Second Stage",
+        events: [
+          {
+            id: 4,
+            name: "The Sky at Day",
+            short: 'day',
+            description: "The Sky at Day is a band from the UK",
+            image: "https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b",
+            spotify: "",
+            youtube: "",
+            instagram: "",
+            facebook: "",
+            twitter: "",
+            soundcloud: "",
+            website: "",
+            start: "2024-06-26T12:00:00Z",
+            end: "2024-06-26T12:30:00Z",
+          },
+          {
+            id: 5,
+            name: "Yoga like water",
+            short: 'water',
+            description: "Yoga like water is a band from the UK",
+            image: "https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b",
+            spotify: "",
+            youtube: "",
+            instagram: "",
+            facebook: "",
+            twitter: "",
+            soundcloud: "",
+            website: "",
+            start: "2024-06-26T12:30:00Z",
+            end: "2024-06-26T13:00:00Z",
+          },
+          {
+            id: 6,
+            name: "The Sky at Night",
+            short: 'night',
+            description: "The Sky at Night is a band from the UK",
+            image: "https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b",
+            spotify: "",
+            youtube: "",
+            instagram: "",
+            facebook: "",
+            twitter: "",
+            soundcloud: "",
+            website: "",
+            start: "2024-06-26T13:00:00Z",
+            end: "2024-06-26T13:30:00Z",
+          },
+        ],
+      }
     ],
   };
 
@@ -98,5 +155,18 @@ describe("Stage", () => {
     );
 
     expect(screen.queryByText("Main Stage")).not.toBeInTheDocument();
+  });
+
+  it('should give the stage the class with the right index', () => {
+    render(
+      <MemoryRouter initialEntries={['/stage/second-stage']}>
+        <Routes>
+          <Route path="/stage/:name" element={<Stage data={actsData}/>} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const stage = screen.getByText('Second Stage');
+    expect(stage).toHaveAttribute('class', 'StageChip-name StageChip-name--2');
   });
 });

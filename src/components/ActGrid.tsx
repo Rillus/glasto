@@ -12,7 +12,7 @@ function ActGrid(props: { events: EventType[]; options?: { showStages: boolean }
       {events.map((act: EventType, index: number) => (
         <div
           className="Grid-row"
-          key={index}>
+          key={act.short}>
           <ActChip
             name={act.name}
             short={act.short}

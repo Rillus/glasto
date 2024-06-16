@@ -7,7 +7,7 @@ describe("StageChip", () => {
   it("renders StageChip component", () => {
     render(
       <BrowserRouter>
-        <StageChip name={undefined} id={undefined} />
+        <StageChip name={''} id={0} />
       </BrowserRouter>
     );
     const stageChip = screen.getByTestId("StageChip");

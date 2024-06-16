@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {ReactElement, useEffect, useMemo, useState, useRef} from "react";
 import ActGrid from "../ActGrid";
 import {Loader} from "../Loader";
 import styles from "./Acts.module.scss";
@@ -21,10 +21,11 @@ interface DayTimes {
 const Acts: React.FC<ActsProps> = ({data}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [acts, setActs] = useState<EventType[]>([]);
-  const [actGridOptions] = useState({showStages: true});
+  const [totalPages, setTotalPages] = useState<number>(0);
   const [selectedDay, setSelectedDay] = useState<string>(useParams().day ?? 'wed');
   const [search, setSearch] = useState<string>(useParams().search ?? '');
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  const mainElement = useRef<HTMLElement>(null);
 
   let defaultPageAsString = useParams().page;
   let defaultPage: number;
@@ -77,20 +78,21 @@ const Acts: React.FC<ActsProps> = ({data}) => {
 
   // This useEffect hook is used to filter the acts based on the search, selectedDay and page
   useEffect(() => {
-    const dataActs = data.locations
+    const dataActs: EventType[] = data.locations
       .map((location, locationIndex) => {
-        return location.events.map((act: any) => {
+        const locationEvents: EventType[] = location.events;
+        return locationEvents.map((act: EventType) => {
+          // if start and end are not present, set them to the default values
           return {
             ...act,
             location: {
               name: location.name,
-              id: locationIndex
+              id: locationIndex+1
             }
           };
         });
       })
       .flat();
-    // console.log('data', dataActs);
 
     const allActs: EventType[] = dataActs
       .filter((act) => {
@@ -99,7 +101,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
         }
         return true;
       })
-      .filter((act) => {
+      .filter((act: EventType) => {
         const actStart = new Date(act.start);
         let returnAct = false;
 
@@ -124,13 +126,49 @@ const Acts: React.FC<ActsProps> = ({data}) => {
         return aStart - bStart;
       });
 
-    // console.log('allActs', allActs.slice((page - 1) * take, page * take));
-    const updatedActs: EventType[] = allActs.slice((page - 1) * take, page * take);
+    const totalPageCount = Math.ceil(allActs.length / take);
+
+    if (totalPages === 0 || totalPages !== totalPageCount) {
+      setTotalPages(totalPageCount);
+    }
+
+    if (page > totalPageCount && totalPages > 0) {
+      setPage(totalPageCount);
+      return;
+    }
+
+    // the first act should be 10 pages back
+    const maxPagesToShow = 10;
+    const firstActIndex = page > maxPagesToShow ? (page - 10) * take : 0;
+    const lastActIndex = page * take;
+
+    const updatedActs: EventType[] = allActs.slice(firstActIndex, lastActIndex);
     setActs(updatedActs);
     if (allActs.length === 0) {
       setErrorMessage('No results found');
     }
-  }, [data, selectedDay, search, page, dayTimes]);
+  }, [data, selectedDay, search, page, dayTimes, totalPages]);
+
+  // lazy load next page when scrolled to the bottom
+  useEffect(() => {
+    const handleScroll = () => {
+      // get mainElement height
+      if (!mainElement.current) {
+        return;
+      }
+
+      if (
+        document.documentElement.scrollTop >= mainElement.current.offsetHeight - window.innerHeight
+      ) {
+        if (page < totalPages) {
+          setPage(page + 1);
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [page, mainElement, totalPages]);
 
   function toggleDay(day: string) {
     // selectedDay can be a comma separated list of days
@@ -143,22 +181,32 @@ const Acts: React.FC<ActsProps> = ({data}) => {
         newSelectedDay = currentlySelectedDays.filter((d) => d !== day).join(',');
       }
     } else {
-      // if the day is not selected, add it
-      newSelectedDay = currentlySelectedDays.concat(day).join(',');
+      // if the day is not selected, add it. Only one day can be selected
+      if (currentlySelectedDays.length === 1) {
+        newSelectedDay = day;
+      } else {
+        newSelectedDay = currentlySelectedDays.filter((d) => d !== 'all').join(',');
+        newSelectedDay = newSelectedDay + ',' + day;
+      }
     }
 
     setSelectedDay(newSelectedDay);
+    setPage(1);
     window.history.pushState({}, '', `?page=${page}&search=${search}&selectedDay=${selectedDay}`);
   }
 
-  function DaySelector() : JSX.Element {
+  function DaySelector() : ReactElement {
     const days = ['wed', 'thu', 'fri', 'sat', 'sun', 'mon'];
 
     let dayClass = (day: string) => {
       let daySelectorClass = 'Button DateChip-day DateChip-day--';
       daySelectorClass += day;
 
-      // if the day is selected, add the active class
+      // only allow one day to be selected
+      // if (selectedDay.split(',').length > 1) {
+      //   daySelectorClass += ' isInactive';
+      // }
+
       if (!selectedDay.split(',').includes(day)) {
         daySelectorClass += ' isInactive';
       }
@@ -180,65 +228,65 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     )
   }
 
-  return <div>
-      <div className={"Search"}>
-        <input
-          className={"Input"}
-          type={"text"}
-          id={"actSearch"}
-          aria-label={"Search for an act"}
-          placeholder={"Search for an act. Minimum 3 characters. Searches on full words only. i.e. 'The' will not return 'Theatre'"}
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value)
-            if (e.target.value.length === 0) {
-              if (acts.length === 0){
-                setIsLoading(true)
-              }
-            } else if (e.target.value.length >= 3) {
-              // setIsLoading(true)
-              setErrorMessage('');
-            } else {
-              setIsLoading(false)
-              setErrorMessage('3 or more characters required to search');
-              setActs([]);
+  return <main ref={mainElement}>
+    <div className={"Search"}>
+      <input
+        className={"Input"}
+        type={"text"}
+        id={"actSearch"}
+        aria-label={"Search for an act"}
+        placeholder={"Search for an act. Minimum 3 characters. Searches on full words only. i.e. 'The' will not return 'Theatre'"}
+        value={search}
+        onChange={(e) => {
+          setSearch(e.target.value)
+          if (e.target.value.length === 0) {
+            if (acts.length === 0){
+              setIsLoading(true)
             }
-          }}
-        />
-
-        <DaySelector />
-
-        <button
-          className={`Button ${styles.Acts_clearButton}`}
-          onClick={() => {
-            setSearch('');
-            setSelectedDay('wed');
-          }}
-        >
-          &times;
-        </button>
-      </div>
-
-      <ActGrid
-        events={acts}
-        options={actGridOptions} />
-
-      <div className={styles.Acts_noResultsWrapper}>
-        <div className={styles.Acts_noResultsInner}>
-          {errorMessage && (
-            <p
-              className={styles.Acts_noResults_text}>
-              {errorMessage}
-            </p>
-          )}
-          {isLoading &&
-            (
-                <Loader size={"100px"} />
-            )
+          } else if (e.target.value.length >= 3) {
+            // setIsLoading(true)
+            setErrorMessage('');
+          } else {
+            setIsLoading(false)
+            setErrorMessage('3 or more characters required to search');
+            setActs([]);
           }
-        </div>
+        }}
+      />
+
+      <DaySelector />
+
+      <button
+        className={`Button ${styles.Acts_clearButton}`}
+        onClick={() => {
+          setSearch('');
+          setSelectedDay('wed');
+        }}
+      >
+        &times;
+      </button>
+    </div>
+
+    <ActGrid
+      events={acts}
+      options={{showStages: true}} />
+
+    <div className={styles.Acts_noResultsWrapper}>
+      <div className={styles.Acts_noResultsInner}>
+        {errorMessage && (
+          <p
+            className={styles.Acts_noResults_text}>
+            {errorMessage}
+          </p>
+        )}
+        {isLoading &&
+          (
+              <Loader size={"100px"} />
+          )
+        }
       </div>
-    </div>;
+    </div>
+  </main>;
 }
 
 export default Acts;

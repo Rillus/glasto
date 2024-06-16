@@ -37,11 +37,14 @@ describe("ActGrid", () => {
   });
 
   it("renders a list of acts with stages", () => {
+    actData[0] = { ...actData[0], location: { name: "Stage 1", id: 1 } };
+
     render(
       <BrowserRouter>
         <ActGrid
           events={actData}
-          options={{ showStages: true }} />
+          options={{ showStages: true }}
+        />
       </BrowserRouter>
     );
 

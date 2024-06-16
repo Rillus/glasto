@@ -63,9 +63,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header Header">
-        <h3>
+        <h3 className="Header-logo">
           <Link to={'/'}>
-            Glasto {year}
+            <img src="/logo192-darkmode.png" alt={`Glasto ${year}`}/>
           </Link>
         </h3>
         <Nav routes={routeArray} />

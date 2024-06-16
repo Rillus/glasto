@@ -1,9 +1,9 @@
 // tests for act.js
 import React from 'react';
-import {fireEvent, screen, waitFor} from '@testing-library/react';
+import {act, fireEvent, screen, waitFor} from '@testing-library/react';
 import {render} from '@testing-library/react';
 import Acts from './Acts';
-import {BrowserRouter} from 'react-router-dom';
+import {BrowserRouter, MemoryRouter, Route, Routes} from 'react-router-dom';
 import {Data} from "../../../types/act";
 
 const actsData: Data = {
@@ -15,6 +15,7 @@ const actsData: Data = {
         {
           id: 1,
           name: 'The Sky at Day',
+          short: 'day',
           description: 'The Sky at Day is a band from the UK',
           image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
           spotify: '',
@@ -30,6 +31,7 @@ const actsData: Data = {
         {
           id: 2,
           name: 'Yoga like water',
+          short: 'water',
           description: 'Yoga like water is a band from the UK',
           image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
           spotify: '',
@@ -45,6 +47,7 @@ const actsData: Data = {
         {
           id: 3,
           name: 'The Sky at Night',
+          short: 'night',
           description: 'The Sky at Night is a band from the UK',
           image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
           spotify: '',
@@ -63,7 +66,22 @@ const actsData: Data = {
       id: 2,
       name: 'Second Stage',
       events: [
-
+        {
+          id: 1,
+          name: 'The Sky Anytime',
+          short: 'any',
+          description: 'The Sky Whenever is a band from the UK',
+          image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
+          spotify: '',
+          youtube: '',
+          instagram: '',
+          facebook: '',
+          twitter: '',
+          soundcloud: '',
+          website: '',
+          start: '2024-06-26T12:00:00Z',
+          end: '2024-06-26T12:30:00Z',
+        },
       ],
     },
   ],
@@ -160,4 +178,92 @@ describe('Acts component', () => {
     expect(noResults).toBeInTheDocument();
 
   });
+
+  it('should give each stage the appropriate id', () => {
+    render(
+      <BrowserRouter>
+        <Acts data={actsData} />
+      </BrowserRouter>
+    );
+
+    const stage = screen.queryAllByText('Main Stage');
+    expect(stage[0]).toHaveAttribute('class', 'StageChip-name StageChip-name--1');
+
+    const stage2 = screen.queryAllByText('Second Stage');
+    expect(stage2[0]).toHaveAttribute('class', 'StageChip-name StageChip-name--2');
+  });
+
+  it('should load more acts when the user scrolls to the bottom of the page', () => {
+    // fill new act data with 30 acts
+    const newActData: Data = {
+      locations: [
+        {
+          id: 1,
+          name: 'Main Stage',
+          events: [],
+        }
+      ]
+    };
+
+    // add 30 acts to the new act data
+    if (newActData.locations[0].events.length < 30) {
+      for(let i = 0; i < 30; i++) {
+        newActData.locations[0].events = [
+          ...newActData.locations[0].events,
+          {
+            id: i + 1,
+            name: `The Sky at Day ${i + 1}`,
+            short: `day${i + 1}`,
+            description: `The Sky at Day ${i + 1} is a band from the UK`,
+            image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
+            spotify: '',
+            youtube: '',
+            instagram: '',
+            facebook: '',
+            twitter: '',
+            soundcloud: '',
+            website: '',
+            start: '2024-06-26T12:00:00Z',
+            end: '2024-06-26T12:30:00Z',
+          },
+        ];
+      }
+    }
+
+    Object.defineProperty(window, 'innerHeight', { writable: true, configurable: true, value: 500 });
+    Object.defineProperty(document.documentElement, 'scrollTop', { writable: true, configurable: true, value: 1000 });
+
+    const mainElement = { offsetHeight: 1500 };
+    jest.spyOn(React, 'useRef').mockReturnValueOnce({ current: mainElement });
+
+    render(
+      <MemoryRouter initialEntries={['/acts']}>
+        <Routes>
+          <Route path="/acts" element={<Acts data={newActData} />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const acts = screen.getAllByText('The Sky at Day 1');
+    expect(acts).not.toBeNull();
+
+    // expect last act not to be in the document
+    const act29 = screen.queryAllByText('The Sky at Day 29');
+    expect(act29).toHaveLength(0);
+
+    // expect only first page of acts to be in the document
+    const actsElement = screen.queryAllByLabelText('Add to lineup');
+    expect(actsElement).toHaveLength(20);
+
+    act(() => {
+      window.dispatchEvent(new Event('scroll'));
+    });
+
+    // expect last act to be in the document
+    const act29Again = screen.queryAllByText('The Sky at Day 29');
+    expect(act29Again).not.toBeNull();
+
+    const actsElementAgain = screen.queryAllByLabelText('Add to lineup');
+    expect(actsElementAgain).toHaveLength(30);
+  })
 });

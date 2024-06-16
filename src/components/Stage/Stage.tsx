@@ -4,16 +4,17 @@ import StageChip from '../StageChip/StageChip';
 import ActGrid from "../ActGrid";
 import Url from "../../helpers/url";
 import {useParams} from "react-router-dom";
+import {Data, Location} from "../../../types/act";
 
-function Stage(props) {
+function Stage(props: {data: Data}) {
   const { name } = useParams();
   const url = name
   const data = props.data;
 
-  const [stage, setStage] = React.useState(null);
+  const [stage, setStage] = React.useState<Location | null>(null);
 
   useEffect(() => {
-    const stages = data.locations.map((location, index) => {
+    const stages: Location[] = data.locations.map((location, index) => {
       return {
         id: index+1,
         name: location.name,
@@ -21,7 +22,7 @@ function Stage(props) {
       }
     });
 
-    const matchingStage = stages.filter((stage, index) => {
+    const matchingStage: Location = stages.filter((stage, index) => {
       if (Url.safeName(stage.name) === url) {
         return {
           id: stage.id,
@@ -46,7 +47,6 @@ function Stage(props) {
       <h1 className="u-text-center">
         <StageChip name={stage.name} id={stage.id} />
       </h1>
-      <p>{stage.description}</p>
       <ActGrid events={stage.events}/>
     </div>
 }
