@@ -1,16 +1,23 @@
 import ActGrid from "../ActGrid";
 import {Data, EventType, Location} from "../../../types/act";
+import {useParams} from "react-router-dom";
 
-function Intro(props: {data: Data}) {
+function Shared(props: {data: Data}) {
+
+  // read url
+  const { lineup } = useParams();
+
+  const lineupFromUrl = lineup ? lineup : '';
 
   let savedActData: EventType[] = [];
 
   // get data of saved acts from cookie
   props.data.locations.forEach((location: Location, index: number) => {
     const filteredEvents: EventType[] = location.events.filter((act: EventType) => {
-      const cookie = `act_${act.short}`;
-      // console.log(localStorage, cookie, localStorage.getItem(cookie))
-      return localStorage.getItem(cookie) === 'true';
+      // split lineup string into array
+      const lineupArray = lineupFromUrl.split('-');
+      const currentAct = `act_${act.short}`;
+      return lineupArray.includes(currentAct);
     });
 
     if(filteredEvents.length > 0) {
@@ -38,20 +45,9 @@ function Intro(props: {data: Data}) {
         Select "Acts" or "Stages" to find add acts to your lineup with the &#9734; button
       </p>
     ) : (
-      <>
-        <ActGrid events={savedActData} options={{showStages: true}}></ActGrid>
-        <button onClick={() => {
-          // create a string in format act_act1-act2_act3 for cookied acts
-          const lineup = savedActData.map(act => `act_${act.short}`).join('-');
-          // update url with lineup
-          const url = window.location.href.split('/').slice(0, -1).join('/') + '/shared/' + lineup;
-
-          navigator.clipboard.writeText(url);
-          alert('Link copied to clipboard: \n'+url);
-        }}>Share your lineup</button>
-      </>
+      <ActGrid events={savedActData} options={{showStages: true}}></ActGrid>
     )}
   </div>
 }
 
-export default Intro;
+export default Shared;

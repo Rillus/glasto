@@ -70,7 +70,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 # Changelog
-### 2024-06-12: v1.2
+### 2024-06-17: v1.4
+- Share lineup functionality - shareable URL copied to clipboard from button on My Lineup page
+
+### 2024-06-17: v1.3
+- Updates day-filtered act list to be in time order
+- Updates lineup as per Clashfinder General latest release
+
+### 2024-06-16: v1.2
 - Added .htaccess file: Ensures deep navigation works correctly on server - e.g. going to an act page directly from the url bar
 - Add paging to acts list - lazy load/infinite scroll.
 - Restricts day toggle to one day for more consistent behavior
@@ -103,5 +110,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # To Do
 - Add tests for all components and functions.
 - Complete typescript conversion.
-sou- Count down to festival start and now/next countdowns
-- Share lineup functionality - shareable URL with lineup in query string.
+- Count down to festival start and now/next countdowns

@@ -9,6 +9,7 @@ import Stage from "./components/Stage/Stage";
 import Acts from "./components/Acts/Acts";
 import Act from "./components/Act/Act";
 import Maps from "./components/Maps/Maps";
+import Shared from "./components/Shared/Shared";
 
 // data provider for the app
 import data from './data/g2024.json';
@@ -57,7 +58,15 @@ function App() {
       name: 'Maps',
       inNav: true,
       isActive: false
-    }
+    },
+    {
+      path: '/shared/:lineup',
+      element: <Shared data={data}/>,
+      name: 'Shared',
+      inNav: false,
+      isActive: false
+    },
+
   ]
 
   return (

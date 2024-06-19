@@ -121,8 +121,8 @@ const Acts: React.FC<ActsProps> = ({data}) => {
         return returnAct;
       })
       .sort((a, b) => {
-        const aStart = new Date(a.start).getSeconds();
-        const bStart = new Date(b.start).getSeconds();
+        const aStart = new Date(a.start).getTime();
+        const bStart = new Date(b.start).getTime();
         return aStart - bStart;
       });
 

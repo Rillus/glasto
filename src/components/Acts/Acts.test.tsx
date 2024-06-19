@@ -13,6 +13,22 @@ const actsData: Data = {
       name: 'Main Stage',
       events: [
         {
+          id: 3,
+          name: 'The Sky at Night',
+          short: 'night',
+          description: 'The Sky at Night is a band from the UK',
+          image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
+          spotify: '',
+          youtube: '',
+          instagram: '',
+          facebook: '',
+          twitter: '',
+          soundcloud: '',
+          website: '',
+          start: '2024-06-26T13:00:00Z',
+          end: '2024-06-26T13:30:00Z',
+        },
+        {
           id: 1,
           name: 'The Sky at Day',
           short: 'day',
@@ -43,22 +59,6 @@ const actsData: Data = {
           website: '',
           start: '2024-06-26T12:30:00Z',
           end: '2024-06-26T13:00:00Z',
-        },
-        {
-          id: 3,
-          name: 'The Sky at Night',
-          short: 'night',
-          description: 'The Sky at Night is a band from the UK',
-          image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
-          spotify: '',
-          youtube: '',
-          instagram: '',
-          facebook: '',
-          twitter: '',
-          soundcloud: '',
-          website: '',
-          start: '2024-06-26T13:00:00Z',
-          end: '2024-06-26T13:30:00Z',
         },
       ],
     },
@@ -191,6 +191,20 @@ describe('Acts component', () => {
 
     const stage2 = screen.queryAllByText('Second Stage');
     expect(stage2[0]).toHaveAttribute('class', 'StageChip-name StageChip-name--2');
+  });
+
+  it('should render acts in time order', () => {
+    render(
+      <BrowserRouter>
+        <Acts data={actsData} />
+      </BrowserRouter>
+    );
+
+    const acts = screen.queryAllByLabelText('Add to lineup');
+
+    expect(acts[0]).toHaveTextContent('The Sky at Day');
+    expect(acts[1]).toHaveTextContent('Yoga like water');
+    expect(acts[2]).toHaveTextContent('The Sky at Night');
   });
 
   it('should load more acts when the user scrolls to the bottom of the page', () => {
