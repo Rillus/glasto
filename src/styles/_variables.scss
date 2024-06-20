@@ -45,6 +45,7 @@ $break-xl: 1200px;
 :root {
   --white: #{$white};
   --black: #{$black};
+  // Month colours as per Riley's annual colour wheel, but with increased saturation
   --jan: #48589a;
   --feb: #275da4;
   --mar: #3d8aae;
@@ -57,6 +58,7 @@ $break-xl: 1200px;
   --oct: #f88428;
   --nov: #e55e34;
   --dec: #99207a;
+  // Draw day colours roughly fom seasons
   --wed: var(--apr);
   --thu: var(--jun);
   --fri: var(--aug);
@@ -88,7 +90,7 @@ $break-xl: 1200px;
   --pastContrast: #{$nobel};
   --pastSuccess: #{$tasman};
   --pastSuccessContrast: #{$nobel};
-  --current: #{$dodger-blue};
+  --current: #{$cyan};
   --currentContrast: #{$outer-space};
   --currentSuccess: #{$harlequin};
   --currentSuccessContrast: #{$harlequin};

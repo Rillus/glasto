@@ -31,7 +31,26 @@ function Intro(props: {data: Data}) {
     return new Date(a.start).getTime() - new Date(b.start).getTime();
   });
 
+  const shareLineup = () => {
+      // create a string in format act_act1-act2_act3 for cookied acts
+      const lineup = savedActData.map(act => `act_${act.short}`).join('-');
+      // update url with lineup
+      const url = window.location.href.split('/').slice(0, -1).join('/') + '/shared/' + lineup;
+
+      navigator.clipboard.writeText(url);
+      alert('Link copied to clipboard');
+  };
+
+  const ShareLineupButton = () => {
+    return (
+      <button onClick={shareLineup} className="Button Button-transparent">
+        Share your lineup
+      </button>
+    );
+  }
+
   return <div>
+    <h1 className="u-text-center">My Lineup</h1>
     {savedActData.length === 0 ? (
       <p style={{textAlign: 'center'}}>
         No saved acts yet. <br />
@@ -39,16 +58,8 @@ function Intro(props: {data: Data}) {
       </p>
     ) : (
       <>
+        <ShareLineupButton />
         <ActGrid events={savedActData} options={{showStages: true}}></ActGrid>
-        <button onClick={() => {
-          // create a string in format act_act1-act2_act3 for cookied acts
-          const lineup = savedActData.map(act => `act_${act.short}`).join('-');
-          // update url with lineup
-          const url = window.location.href.split('/').slice(0, -1).join('/') + '/shared/' + lineup;
-
-          navigator.clipboard.writeText(url);
-          alert('Link copied to clipboard: \n'+url);
-        }}>Share your lineup</button>
       </>
     )}
   </div>

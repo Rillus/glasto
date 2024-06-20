@@ -200,11 +200,11 @@ describe('Acts component', () => {
       </BrowserRouter>
     );
 
-    const acts = screen.queryAllByLabelText('Add to lineup');
-
+    const acts = screen.queryAllByTestId('ActName');
     expect(acts[0]).toHaveTextContent('The Sky at Day');
-    expect(acts[1]).toHaveTextContent('Yoga like water');
-    expect(acts[2]).toHaveTextContent('The Sky at Night');
+    expect(acts[1]).toHaveTextContent('The Sky Anytime');
+    expect(acts[2]).toHaveTextContent('Yoga like water');
+    expect(acts[3]).toHaveTextContent('The Sky at Night');
   });
 
   it('should load more acts when the user scrolls to the bottom of the page', () => {

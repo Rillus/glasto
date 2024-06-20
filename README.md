@@ -70,7 +70,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 # Changelog
-### 2024-06-17: v1.4
+### 2024-06-20: v1.4.2
+- Tests for share line up functionality 
+
+### 2024-06-20: v1.4.1
+- Refactor Share Lineup feature
+- Move and style Share Lineup button
+- Some other minor style updates
+
+### 2024-06-19: v1.4
 - Share lineup functionality - shareable URL copied to clipboard from button on My Lineup page
 
 ### 2024-06-17: v1.3

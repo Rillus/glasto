@@ -40,7 +40,7 @@ export default function ActChip(props: { name: string, short: string, isSelected
           {selectedIcon}
         </button>
       )}
-      <Link to={`/acts/${Url.safeName(props.name)}`}>{props.name}</Link>
+      <Link to={`/acts/${Url.safeName(props.name)}`} data-testid="ActName">{props.name}</Link>
     </span>
   );
 }

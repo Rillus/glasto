@@ -39,6 +39,8 @@ function Shared(props: {data: Data}) {
   });
 
   return <div>
+    <h1 className="u-text-center">Shared lineup</h1>
+    <p className="u-text-center">Acts shown as per the URL you entered</p>
     {savedActData.length === 0 ? (
       <p style={{textAlign: 'center'}}>
         No saved acts yet. <br />

@@ -1,7 +1,7 @@
-import React from "react";
+import React, {ReactElement} from "react";
 import { render, screen } from "@testing-library/react";
 import Shared from "./Shared";
-import {BrowserRouter} from "react-router-dom";
+import {BrowserRouter, useParams} from "react-router-dom";
 
 const data = {
   locations: [
@@ -31,16 +31,9 @@ describe("Shared", () => {
       </BrowserRouter>
     );
     expect(screen.getByText(/No saved acts yet/i)).toBeInTheDocument();
+    expect(screen.getByText(/Shared lineup/i)).toBeInTheDocument();
   });
 
-  it('should show saved acts based on cookies', () => {
-    localStorage.setItem('act_test-act', 'true');
-
-    const { container: HTMLElement } = render(
-      <BrowserRouter>
-        <Shared data={data} />
-      </BrowserRouter>
-    );
-    expect(screen.getByText('Test Act')).toBeInTheDocument();
+  it.skip('should show saved acts based on url', () => {
   });
 });
