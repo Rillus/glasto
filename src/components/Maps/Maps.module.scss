@@ -1,0 +1,25 @@
+.Maps {
+  position: relative;
+  min-height: 100%
+}
+
+.header {
+  display: inline-block;
+}
+
+.map {
+  border: 1px solid white;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 12px;
+  top: 152px;
+  right: 12px;
+  left: 12px;
+  background-color: white;
+}
+
+.buttonGroup {
+  margin-bottom: 12px;
+  display: inline-block;
+  margin-left: 12px
+}

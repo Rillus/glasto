@@ -18,7 +18,7 @@
 
     @media (max-width: $break-md) {
       flex-wrap: wrap;
-      border-bottom: 1px dashed var(--currentContrast);
+      border-bottom: 1px dashed #ccc;
 
       .DateChip {
         width: 100%;

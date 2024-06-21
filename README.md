@@ -70,6 +70,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 # Changelog
+### 2024-06-21: v1.4.2
+- Updates lineup as per Clashfinder General latest release
+- Style update for better contrast division between acts
+- Updated maps
+
 ### 2024-06-20: v1.4.2
 - Tests for share line up functionality 
 
@@ -99,6 +104,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Adds tests against Intro component (My Lineup) and act saving functionality.
 - Ongoing typescript conversion.
 - New app icons designed and added.
+
 #### v1.1.1
 - Meta description updated
 
@@ -119,3 +125,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Add tests for all components and functions.
 - Complete typescript conversion.
 - Count down to festival start and now/next countdowns
+- Add custom notes to acts
+- Add custom notes to stages
+- Add custom acts to stages with time and date
+- Add custom stages

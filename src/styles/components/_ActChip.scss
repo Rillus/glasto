@@ -14,10 +14,15 @@
     margin: 0 #{$spacer/2} 0 -#{$spacer/4};
     font-size: 1.2rem;
     border-radius: 3px;
-    border: transparent;
     background: rgba(255,255,255, 0.1);
     color: var(--white);
     cursor: pointer;
+    border: 1px solid transparent;
+
+    &.isSelected {
+      background: var(--currentContrast);
+      border: 1px solid #ccc;
+    }
 
     &:hover {
       background: rgba(255,255,255, 0.2);
