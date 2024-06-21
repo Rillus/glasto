@@ -7,6 +7,11 @@
   position: absolute;
   right: 0;
 
+  @media(max-width: 400px) {
+    margin: auto;
+    position: static;
+  }
+
   &-item {
     list-style: none;
     height: 40px;
@@ -29,6 +34,12 @@
 
     &.isPending {
       border-bottom: 7px solid var(--warning);
+    }
+
+    &:last-child {
+      @media(max-width: 400px) {
+        margin-right: 0;
+      }
     }
   }
 }

@@ -7,6 +7,11 @@
   background: $light-header-gradient, url('../../../public/images/pyramid-sunset-blur-dark.jpg') no-repeat top center fixed var(--background);
   background-size: cover;
   display: flex;
+  height: 60px;
+
+  @media(max-width: 400px) {
+    height: 40px;
+  }
 
   h3 {
     margin: 0 0 0 2px;
@@ -32,6 +37,10 @@
     img {
         width: 100%;
         height: 100%;
+    }
+
+    @media (max-width: 400px) {
+      display: none;
     }
   }
 

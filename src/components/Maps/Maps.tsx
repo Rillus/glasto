@@ -61,16 +61,16 @@ function Maps () {
         <h1 className={styles.header}>Maps</h1>
         <div className={`ButtonGroup ${styles.buttonGroup}`}>
           <button
-            className={`Button ${selectedMap === 'official' ? 'isActive' : 'isInactive'}`}
+            className={`Button u-minWidth0 ${selectedMap === 'official' ? 'isActive' : 'isInactive'}`}
             onClick={() => { updateMap('official')}}>
             Official map
           </button>
           <button
-            className={`Button ${selectedMap === 'tube' ? 'isActive' : 'isInactive'}`}
+            className={`Button u-minWidth0 ${selectedMap === 'tube' ? 'isActive' : 'isInactive'}`}
             onClick={() => {updateMap('tube')}}>Tube map
           </button>
           <button
-            className={`Button ${selectedMap === '1979' ? 'isActive' : 'isInactive'}`}
+            className={`Button u-minWidth0 ${selectedMap === '1979' ? 'isActive' : 'isInactive'}`}
             onClick={() => {updateMap('1979')}}>1979
           </button>
         </div>
