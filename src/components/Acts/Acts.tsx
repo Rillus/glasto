@@ -235,7 +235,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
         type={"text"}
         id={"actSearch"}
         aria-label={"Search for an act"}
-        placeholder={"Search for an act. Minimum 3 characters. Searches on full words only. i.e. 'The' will not return 'Theatre'"}
+        placeholder={"Search for an act"}
         value={search}
         onChange={(e) => {
           setSearch(e.target.value)
