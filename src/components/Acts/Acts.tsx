@@ -215,7 +215,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     }
 
     return (
-      <div className={"ButtonGroup"} style={{marginLeft: '12px'}}>
+      <div className={"ButtonGroup"}>
         {days.map((day) => (
           <button
             className={dayClass(day)}

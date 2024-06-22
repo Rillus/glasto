@@ -8,8 +8,43 @@
   display: flex;
   align-items: center;
 
+  @media(max-width: 600px) {
+    flex-wrap: wrap;
+  }
+
   .Input {
     width: 100%;
     margin-left: $spacer;
+    height: 38px;
+    box-sizing: border-box;
+    color: var(--currentContrast);
+
+    @media(max-width: 600px) {
+      width: calc(100% - 60px);
+      margin: 0 0 $spacer 0;
+    }
+  }
+
+  .ButtonGroup {
+    margin-left: $spacer;
+
+    @media(max-width: 600px) {
+      order: 2;
+      margin: 0;
+      width: 100%;
+
+      .Button {
+        width: 100%;
+      }
+    }
+  }
+
+  & > .Button {
+    min-width: 38px;
+
+    @media(max-width: 600px) {
+      margin: 0 0 $spacer $spacer;
+      flex: auto;
+    }
   }
 }
