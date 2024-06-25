@@ -74,8 +74,12 @@
     }
 
     .StageChip-name {
-      width: calc(100% - 20px);
       text-align: center;
+      align-self: center;
+
+      @media (max-width: $break-md) {
+        min-width: calc(100% - 30px);
+      }
     }
   }
 

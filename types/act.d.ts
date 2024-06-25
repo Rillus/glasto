@@ -24,6 +24,7 @@ interface ActType {
 }
 
 interface Data {
+  modified?: string;
   locations: Location[];
 }
 

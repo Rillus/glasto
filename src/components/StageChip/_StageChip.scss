@@ -1,14 +1,6 @@
 @import "../../styles/variables";
 
 .StageChip {
-  display: inline-block;
-
-  a,
-  a:visited,
-  a:hover {
-      //color: var(--white);
-      text-decoration: none;
-  }
 
   &-name {
     padding: #{$spacer / 4} #{$spacer};
@@ -20,6 +12,12 @@
     text-transform: uppercase;
     font-weight: bold;
     color: var(--white);
+    text-decoration: none;
+
+    &:visited,
+    &:hover {
+        text-decoration: none;
+    }
 
     h1 & {
       padding: #{$spacer} #{$spacer * 1.5};

@@ -62,6 +62,15 @@ function Intro(props: {data: Data}) {
         <ActGrid events={savedActData} options={{showStages: true}}></ActGrid>
       </>
     )}
+    <footer>
+      <hr/>
+      <div style={{float: 'left'}}>
+        v1.2
+      </div>
+      <div style={{float: 'right'}}>
+        Lineup updated: {props.data?.modified}
+      </div>
+    </footer>
   </div>
 }
 

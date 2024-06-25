@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, Routes, Route} from 'react-router-dom';
 
 import './styles/index.scss';
@@ -12,10 +12,16 @@ import Maps from "./components/Maps/Maps";
 import Shared from "./components/Shared/Shared";
 
 // data provider for the app
-import data from './data/g2024.json';
+// import defaultData from './public/g2024.json';
 
 function App() {
   const year = new Date().getFullYear();
+  let defaultData = {
+    locations: []
+  };
+
+  const [data, setData] = useState(defaultData);
+
   const routeArray = [
     {
       path: '/',
@@ -66,8 +72,18 @@ function App() {
       inNav: false,
       isActive: false
     },
+  ];
 
-  ]
+
+  // fetch data
+  useEffect(() => {
+    fetch('/g2024.json')
+      .then(response => response.json())
+      .then(incomingData => {
+        console.log('data got!');
+        setData(incomingData);
+      });
+  }, []);
 
   return (
     <div className="App">

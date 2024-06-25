@@ -70,6 +70,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 # Changelog
+### 2024-06-23: v2.1
+- Highlight navigation link for current page
+- Adds version number to footer
+
+### 2024-06-23: v2
+- Minor StageChip refactor to reduce DOM nodes
+- Fetches data from separate json file (to allow for easier updates)
+- Fixes for StageChip styles on larger screens
+
 ### 2024-06-22: v1.5
 - Adds Stages search
  

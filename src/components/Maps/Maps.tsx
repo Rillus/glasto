@@ -13,7 +13,7 @@ function Maps () {
   function updateMap(type: string) {
     setSelectedMap(type);
     let mapWidth = 657;
-    let mapHeight = 620;
+    // let mapHeight = 620;
     let defaultMapScale = 0.5;
     switch (type) {
       case 'tube':
@@ -24,7 +24,7 @@ function Maps () {
         break;
       case '1979':
         mapWidth = 800;
-        mapHeight = 577;
+        // mapHeight = 577;
         defaultMapScale = 1.58;
         setMapState({
           scale: defaultMapScale,

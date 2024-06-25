@@ -4,14 +4,14 @@ import StageChip from "./StageChip";
 import {BrowserRouter} from "react-router-dom";
 
 describe("StageChip", () => {
-  it("renders StageChip component", () => {
+  it("doesn't render StageChip component if name is an empty string", () => {
     render(
       <BrowserRouter>
         <StageChip name={''} id={0} />
       </BrowserRouter>
     );
-    const stageChip = screen.getByTestId("StageChip");
-    expect(stageChip).toBeInTheDocument();
+    const stageChip = screen.queryAllByTestId("StageChip");
+    expect(stageChip).toHaveLength(0);
   });
 
   it("renders the stage name", () => {
