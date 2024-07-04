@@ -70,6 +70,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 # Changelog
+### 2024-06-23: v2.1.1
+- Adds "about this app" link to footer
+
 ### 2024-06-23: v2.1
 - Highlight navigation link for current page
 - Adds version number to footer

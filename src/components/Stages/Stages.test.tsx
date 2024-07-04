@@ -40,4 +40,25 @@ describe("Stages", () => {
     const stages = screen.getAllByTestId("StageChip");
     expect(stages).toHaveLength(data.locations.length);
   });
+
+  it.skip('allows you to search for a stage', () => {
+    render(
+      <BrowserRouter>
+        <Stages data={data} />
+      </BrowserRouter>
+    );
+
+    // get input field
+    const input: HTMLInputElement = screen.getByTestId("Search");
+    // type in input field
+    input.value = "Main";
+    // trigger change event
+    // input.dispatchEvent(new Event("input"));
+    // get stages by Stage Chip class
+    console.log(input.value)
+
+    screen.debug();
+    const stages = screen.getAllByTestId("StageChip");
+    expect(stages).toHaveLength(1);
+  });
 });
