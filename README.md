@@ -1,5 +1,5 @@
 # Glasto 2024
-# by Riley Ramone at Ticketlab
+## by Riley Ramone, Ticketlab
 
 # Changelog
 ### 2024-06-23: v2.1.1
