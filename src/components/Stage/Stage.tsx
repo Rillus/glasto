@@ -39,12 +39,12 @@ function Stage(props: {data: Data}) {
 
   if (!stage) {
     return <div>
-      <h1 className="u-text-center">Stage not found</h1>
+      <h1 className="text-center">Stage not found</h1>
     </div>
   }
 
   return <div>
-      <h1 className="u-text-center">
+      <h1 className="text-center">
         <StageChip name={stage.name} id={stage.id} />
       </h1>
       <ActGrid events={stage.events}/>

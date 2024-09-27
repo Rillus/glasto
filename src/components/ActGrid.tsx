@@ -8,10 +8,10 @@ function ActGrid(props: { events: EventType[]; options?: { showStages: boolean }
   const events: EventType[] = props.events;
 
   return (
-    <div className={props.options?.showStages ? "Grid Grid--showStage" : "Grid"}>
+    <div className="grid">
       {events.map((act: EventType, index: number) => (
         <div
-          className="Grid-row"
+          className="flex justify-between space-x-1 flex-wrap md:flex-nowrap border-b border-dashed border-gray-300 md:border-0"
           key={act.short}>
           <ActChip
             name={act.name}

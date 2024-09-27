@@ -38,12 +38,12 @@ function Act(props: { data: Data }) {
 
   if (!act) {
     return <div>
-      <h1 className="u-text-center">Act not found</h1>
+      <h1 className="text-center">Act not found</h1>
     </div>
   }
 
   return <div>
-      <h1 className="u-text-center">
+      <h1 className="text-center">
         {act && <StageChip name={act.name} id={act.id} />}
       </h1>
       {actWithEvents &&

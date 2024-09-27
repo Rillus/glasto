@@ -1,6 +1,7 @@
 import Url from "../helpers/url";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import Button from "./Button/Button";
 
 export default function ActChip(props: { name: string, short: string, isSelected?: boolean}) {
   const [isSelected, setIsSelected] = useState(props.isSelected);
@@ -31,16 +32,16 @@ export default function ActChip(props: { name: string, short: string, isSelected
   }
 
   return (
-    <span className="ActChip">
+    <span className="inline-flex flex-auto bg-lightGradient border border-[color:var(--currentContrast)] leading-[30px] mx-0 my-0.5 px-0.5 py-0.25 rounded-[5px] border-solid;">
       {user && (
-        <button
-          className={`ActChip-button ${isSelected ? 'isSelected' : ''}`}
+        <Button
           aria-label={isSelected ? 'Remove from lineup' : 'Add to lineup'}
+          variant={['transparent', 'icon']}
           onClick={addToLineup}>
           {selectedIcon}
-        </button>
+        </Button>
       )}
-      <Link to={`/acts/${Url.safeName(props.name)}`} data-testid="ActName">{props.name}</Link>
+      <Link to={`/acts/${Url.safeName(props.name)}`} data-testid="ActName" className="text-white inline-block w-full no-underline self-center">{props.name}</Link>
     </span>
   );
 }

@@ -86,16 +86,25 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header Header">
-        <h3 className="Header-logo">
-          <Link to={'/'}>
-            <img src="/logo192-darkmode.png" alt={`Glasto ${year}`}/>
+    <div>
+      <header 
+        className="mb-0 leading-[39px] pl-[5px] bg-no-repeat bg-top bg-fixed bg-cover flex h-[60px] md:px-0 max-[400px]:h-[40px]"
+        style={{
+          backgroundImage: `url('images/pyramid-sunset-blur-dark.jpg')`,
+        }}
+        >
+        <h3 className="m-0 ml-1 text-2xl leading-[59px] ml-3 text-[color:var(--backgroundContrast)] max-[420px]:text-lg max-[359px]:text-sm">
+          <Link to={'/'} className="text-[color:var(--backgroundContrast)] no-underline hover:no-underline">
+            <img 
+              src="/logo192-darkmode.png" 
+              alt={`Glasto ${year}`}
+              className="w-[60px] h-[60px] max-[400px]:hidden"
+            />
           </Link>
         </h3>
         <Nav routes={routeArray} />
       </header>
-      <section className="Main">
+      <section className="p-1 relative z-[1] min-h-[calc(100%-60px)]">
         <Routes>
           {routeArray.map((route, index) => {
             return (

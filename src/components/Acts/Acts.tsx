@@ -1,7 +1,7 @@
 import React, {ReactElement, useEffect, useMemo, useState, useRef} from "react";
 import ActGrid from "../ActGrid";
 import {Loader} from "../Loader";
-import styles from "./Acts.module.scss";
+import Button from "../Button/Button";
 
 // import types
 import {EventType, Data} from "../../../types/act";
@@ -199,13 +199,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     const days = ['wed', 'thu', 'fri', 'sat', 'sun', 'mon'];
 
     let dayClass = (day: string) => {
-      let daySelectorClass = 'Button DateChip-day DateChip-day--';
-      daySelectorClass += day;
-
-      // only allow one day to be selected
-      // if (selectedDay.split(',').length > 1) {
-      //   daySelectorClass += ' isInactive';
-      // }
+      let daySelectorClass = '';
 
       if (!selectedDay.split(',').includes(day)) {
         daySelectorClass += ' isInactive';
@@ -215,23 +209,24 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     }
 
     return (
-      <div className={"ButtonGroup"}>
+      <div className="flex flex-nowrap m-1">
         {days.map((day) => (
-          <button
-            className={dayClass(day)}
+          <Button
+            className={!selectedDay.split(',').includes(day) ? 'bg-currentContrast' : ''}
             key={day}
+            variant={['dayChip', 'medium', 'icon', 'buttonGroup', `${day}`]}
             onClick={() => toggleDay(day)}>
             {day}
-          </button>
+          </Button>
         ))}
       </div>
     )
   }
 
   return <main ref={mainElement}>
-    <div className={"Search"}>
+    <div className="px-0.5 py-0 m-auto rounded-md border border-white flex items-center">
       <input
-        className={"Input"}
+        className="py-0.5 px-1 mx-auto rounded-md bg-white/80 border border-white w-full"
         type={"text"}
         id={"actSearch"}
         aria-label={"Search for an act"}
@@ -256,34 +251,32 @@ const Acts: React.FC<ActsProps> = ({data}) => {
 
       <DaySelector />
 
-      <button
-        className={`Button ${styles.Acts_clearButton}`}
+      <Button
+        className="bg-[color:var(--currentContrast)] text-white w-10 h-10 min-w-auto text-2xl border-none"
         onClick={() => {
           setSearch('');
           setSelectedDay('wed');
         }}
+        variant={['medium', 'icon']}
       >
         &times;
-      </button>
+      </Button>
     </div>
 
     <ActGrid
       events={acts}
       options={{showStages: true}} />
 
-    <div className={styles.Acts_noResultsWrapper}>
-      <div className={styles.Acts_noResultsInner}>
+    <div className="relative mt-10">
+      <div className="absolute text-center top-1/2 left-1/2 transform -translate-x-1/2">
         {errorMessage && (
-          <p
-            className={styles.Acts_noResults_text}>
+          <p className="w-[200px]">
             {errorMessage}
           </p>
         )}
-        {isLoading &&
-          (
-              <Loader size={"100px"} />
-          )
-        }
+        {isLoading && (
+          <Loader size={"100px"} />
+        )}
       </div>
     </div>
   </main>;

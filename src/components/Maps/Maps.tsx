@@ -1,8 +1,7 @@
 import React from 'react';
 // @ts-ignore
 import { MapInteractionCSS } from 'react-map-interaction';
-import styles from './Maps.module.scss';
-
+import Button from '../Button/Button';
 function Maps () {
   let [selectedMap, setSelectedMap] = React.useState('official');
   let [mapState, setMapState] = React.useState({
@@ -56,26 +55,29 @@ function Maps () {
   }
 
   return (
-    <main className={styles.Maps}>
+    <main className="relative min-h-full">
       <header>
-        <h1 className={styles.header}>Maps</h1>
-        <div className={`ButtonGroup ${styles.buttonGroup}`}>
-          <button
-            className={`Button u-minWidth0 ${selectedMap === 'official' ? 'isActive' : 'isInactive'}`}
+        <h1 className="text-xl font-bold text-center inline-block">Maps</h1>
+        <div className={`inline-block mb-1 ml-1`}>
+          <Button
+            className={`min-w-0 ${selectedMap === 'official' ? 'bg-semiTransparentWhiteHover' : ''}`}
+            variant={['transparent', 'medium']}
             onClick={() => { updateMap('official')}}>
             Official map
-          </button>
-          <button
-            className={`Button u-minWidth0 ${selectedMap === 'tube' ? 'isActive' : 'isInactive'}`}
+          </Button>
+          <Button
+            className={`min-w-0 ${selectedMap === 'tube' ? 'bg-semiTransparentWhiteHover' : ''}`}
+            variant={['transparent', 'medium']}
             onClick={() => {updateMap('tube')}}>Tube map
-          </button>
-          <button
-            className={`Button u-minWidth0 ${selectedMap === '1979' ? 'isActive' : 'isInactive'}`}
+          </Button>
+          <Button
+            className={`min-w-0 ${selectedMap === '1979' ? 'bg-semiTransparentWhiteHover' : ''}`}
+            variant={['transparent', 'medium']}
             onClick={() => {updateMap('1979')}}>1979
-          </button>
+          </Button>
         </div>
       </header>
-      <div className={styles.map}>
+      <div className="fixed bottom-1 left-1 right-1 top-[162px] md:top-[152px] rounded bg-white border border-white">
         <MapInteractionCSS
           value={mapState}
           onChange={

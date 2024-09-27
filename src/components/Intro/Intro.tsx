@@ -1,5 +1,6 @@
 import ActGrid from "../ActGrid";
 import {Data, EventType, Location} from "../../../types/act";
+import Button from "../Button/Button";
 
 function Intro(props: {data: Data}) {
 
@@ -43,14 +44,14 @@ function Intro(props: {data: Data}) {
 
   const ShareLineupButton = () => {
     return (
-      <button onClick={shareLineup} className="Button Button-transparent">
+      <Button variant={['medium', 'transparent']} onClick={shareLineup}>
         Share your lineup
-      </button>
+      </Button>
     );
   }
 
   return <div>
-    <h1 className="u-text-center">My Lineup</h1>
+    <h1 className="text-center">My Lineup</h1>
     {savedActData.length === 0 ? (
       <p style={{textAlign: 'center'}}>
         No saved acts yet. <br />

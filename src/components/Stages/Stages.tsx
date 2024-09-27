@@ -3,8 +3,6 @@ import StageChip from '../StageChip/StageChip';
 
 import {Data, Location} from '../../../types/act';
 
-import './_Stages.scss';
-
 function Stages({data}: {data: Data}) {
   const [search, setSearch] = useState('');
   const [stages, setStages]: [Location[], any] = useState([]);
@@ -26,13 +24,13 @@ function Stages({data}: {data: Data}) {
   }, [data]);
 
   return <div className="Stages">
-      <h1 className="Stages-heading u-text-center">
+      <h1 className="text-xl font-bold text-center">
         Stages
       </h1>
 
-      <div className={"Search"}>
+      <div className="p-0.5 m-auto rounded-md border border-white flex items-center">
         <input
-          className={"Input"}
+          className="py-0.5 px-1 mx-auto rounded-md bg-white/80 border border-white w-full"
           type={"text"}
           data-testid={"Search"}
           aria-label={"Search for a stage"}
@@ -51,7 +49,7 @@ function Stages({data}: {data: Data}) {
         />
       </div>
 
-      <div className="Stages-list">
+      <div className="m-auto text-center grid justify-evenly items-center justify-items-stretch grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-0 gap-x-4">
         {stages.map((stage, index) => (
           <StageChip
             key={index}
