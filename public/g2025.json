@@ -1,0 +1,134 @@
+{
+	"copyright":"Licensed under a Creative Commons Attribution-NonCommercial 3.0 License https://creativecommons.org/licenses/by-nc/3.0/. Free for non-commercial use. Contact halvin@clashfinder.com for other uses.",
+	"modified":"2025-05-02 10:21",
+	"name":"Glastonbury Festival 2025",
+	"id":"g2025",
+	"url":"https://clashfinder.com/s/g2025/",
+	"printAdvisory":5,
+	"timezone":"Europe/London",
+	"tzOffset":3600,
+	"tzNote":"Start and end times are given in the timezone of the event. Offset by -tzOffset for UTC.",
+	"locations":[
+		{
+			"name":"Pyramid Stage",
+			"events":[
+				{"name":"Supergrass","short":"superg(1)","start":"2025-06-27 12:00","end":"2025-06-27 13:00","estd":"1"},
+				{"name":"Burning Spear","short":"burnin(1)","start":"2025-06-27 13:30","end":"2025-06-27 14:30","mbId":"16dad944-c492-43dd-88ed-e0b7ac520c40","estd":"1"},
+				{"name":"Busta Rhymes","short":"bustar(1)","start":"2025-06-27 16:15","end":"2025-06-27 17:15"},
+				{"name":"Alanis Morissette","short":"alanis(1)","start":"2025-06-27 18:00","end":"2025-06-27 19:00"},
+				{"name":"Biffy Clyro","short":"biffyc(1)","start":"2025-06-27 19:45","end":"2025-06-27 21:00"},
+				{"name":"The 1975","short":"1975(1)","start":"2025-06-27 22:00","end":"2025-06-27 23:45"},
+				{"name":"Raye","short":"raye(1)","start":"2025-06-28 19:45","end":"2025-06-28 20:45","mbId":"8be564c3-dfba-440b-af8c-4ffbceeef45e"},
+				{"name":"Neil Young","short":"neilyo(1)","start":"2025-06-28 21:45","end":"2025-06-28 23:45"},
+				{"name":"Rod Stewart","short":"rodste(1)","start":"2025-06-29 15:45","end":"2025-06-29 17:00","mbId":"a35237a0-4f47-40a6-b6f3-1e786db23402"},
+				{"name":"Chic and Nile Rodgers","short":"chican(1)","start":"2025-06-29 17:45","end":"2025-06-29 18:45","mbId":"c6d571dd-c0ae-4ac8-9500-780b1b9b25e5"},
+				{"name":"Noah Kahan","short":"noahka(1)","start":"2025-06-29 19:30","end":"2025-06-29 20:30"},
+				{"name":"Olivia Rodrigo","short":"olivia(1)","start":"2025-06-29 21:30","end":"2025-06-29 23:15"}
+			]
+		},
+		{
+			"name":"Other Stage",
+			"events":[
+				{"name":"Gracie Abrams","short":"gracie(1)","start":"2025-06-27 20:30","end":"2025-06-27 21:30"},
+				{"name":"Loyle Carner","short":"loylec(1)","start":"2025-06-27 22:15","end":"2025-06-27 23:30"},
+				{"name":"beabadoobee","short":"beabad(1)","start":"2025-06-28 16:00","end":"2025-06-28 17:00"},
+				{"name":"Amyl & The Sniffers","short":"amylsn(1)","start":"2025-06-28 17:30","end":"2025-06-28 18:30"},
+				{"name":"Ezra Collective","short":"ezraco(1)","start":"2025-06-28 19:00","end":"2025-06-28 20:00"},
+				{"name":"Deftones","short":"defton(1)","start":"2025-06-28 20:30","end":"2025-06-28 21:30"},
+				{"name":"Charli XCX","short":"charli(1)","start":"2025-06-28 22:30","end":"2025-06-28 23:45"},
+				{"name":"The Libertines","short":"libert(1)","start":"2025-06-29 18:00","end":"2025-06-29 19:00"},
+				{"name":"Wolf Alice","short":"wolfal(1)","start":"2025-06-29 19:45","end":"2025-06-29 20:45"},
+				{"name":"The Prodigy","short":"prodig(1)","start":"2025-06-29 21:45","end":"2025-06-29 23:15"}
+			]
+		},
+		{
+			"name":"West Holts",
+			"events":[
+				{"name":"corto.alto","short":"cortoa(1)","start":"2025-06-27 11:30","end":"2025-06-27 12:30"},
+				{"name":"Ca7riel & Paco Amorso","short":"ca7rie(1)","start":"2025-06-27 13:00","end":"2025-06-27 14:00"},
+				{"name":"Glass Beams","short":"glassb(1)","start":"2025-06-27 14:30","end":"2025-06-27 15:30"},
+				{"name":"Vieux Farka Touré","short":"vieuxf(1)","start":"2025-06-27 16:00","end":"2025-06-27 17:00"},
+				{"name":"En Vogue","short":"envogu(1)","start":"2025-06-27 17:30","end":"2025-06-27 18:30"},
+				{"name":"Denzel Curry","short":"denzel(1)","start":"2025-06-27 19:00","end":"2025-06-27 20:00"},
+				{"name":"Badbadnotgood","short":"badbad(1)","start":"2025-06-27 20:30","end":"2025-06-27 21:30"},
+				{"name":"Maribou State","short":"maribo(1)","start":"2025-06-27 22:15","end":"2025-06-27 23:45"},
+				{"name":"Infinity Song","short":"infini(1)","start":"2025-06-28 11:30","end":"2025-06-28 12:30"},
+				{"name":"Nilüfer Yanya","short":"nilfer(1)","start":"2025-06-28 13:00","end":"2025-06-28 14:00"},
+				{"name":"Bob Vylan","short":"bobvyl(1)","start":"2025-06-28 14:30","end":"2025-06-28 15:30"},
+				{"name":"Kneecap","short":"kneeca(1)","start":"2025-06-28 16:00","end":"2025-06-28 17:00"},
+				{"name":"Yussef Dayes","short":"yussef(1)","start":"2025-06-28 17:30","end":"2025-06-28 18:30"},
+				{"name":"Greentea Peng","short":"greent(1)","start":"2025-06-28 19:00","end":"2025-06-28 20:00"},
+				{"name":"Amaarae","short":"amaara(1)","start":"2025-06-28 20:30","end":"2025-06-28 21:30"},
+				{"name":"Doechii","short":"doechi(1)","start":"2025-06-28 22:15","end":"2025-06-28 23:45"},
+				{"name":"Thandii","short":"thandi(1)","start":"2025-06-29 11:00","end":"2025-06-29 12:00"},
+				{"name":"Abel Selaocoe & The Bantu Ensemble","short":"abelse(1)","start":"2025-06-29 12:30","end":"2025-06-29 13:30"},
+				{"name":"Cymande","short":"cymand(1)","start":"2025-06-29 14:00","end":"2025-06-29 15:00"},
+				{"name":"Black Uhuru","short":"blacku(1)","start":"2025-06-29 15:30","end":"2025-06-29 16:30"},
+				{"name":"GOAT","short":"goat(1)","start":"2025-06-29 17:00","end":"2025-06-29 18:00"},
+				{"name":"The Brian Jonestown Massacre","short":"brianj(1)","start":"2025-06-29 18:30","end":"2025-06-29 19:30"},
+				{"name":"Parcels","short":"parcel(1)","start":"2025-06-29 20:00","end":"2025-06-29 21:00"},
+				{"name":"Overmono","short":"overmo(1)","start":"2025-06-29 22:00","end":"2025-06-29 23:15"}
+			]
+		},
+		{
+			"name":"Woodsies",
+			"events":[
+				{"name":"Myles Smith","short":"myless(1)","start":"2025-06-27 12:30","end":"2025-06-27 13:15"},
+				{"name":"Fat Dog","short":"fatdog(1)","start":"2025-06-27 13:45","end":"2025-06-27 14:30"},
+				{"name":"Shed Seven","short":"shedse(1)","start":"2025-06-27 15:00","end":"2025-06-27 16:00"},
+				{"name":"Lola Young","short":"lolayo(1)","start":"2025-06-27 16:30","end":"2025-06-27 17:30"},
+				{"name":"Blossoms","short":"blosso(1)","start":"2025-06-27 18:00","end":"2025-06-27 19:00"},
+				{"name":"Pinkpantheress","short":"pinkpa(1)","start":"2025-06-27 19:30","end":"2025-06-27 20:30"},
+				{"name":"Floating Points","short":"floati(1)","start":"2025-06-27 21:00","end":"2025-06-27 22:00"},
+				{"name":"Four Tet","short":"fourte(1)","start":"2025-06-27 22:30","end":"2025-06-27 23:45"},
+				{"name":"The Amazons","short":"amazon(1)","start":"2025-06-28 11:30","end":"2025-06-28 12:15"},
+				{"name":"Sorry","short":"sorry(1)","start":"2025-06-28 12:45","end":"2025-06-28 13:30"},
+				{"name":"Fcukers","short":"fcuker(1)","start":"2025-06-28 14:00","end":"2025-06-28 14:45"},
+				{"name":"Jade","short":"jade(1)","start":"2025-06-28 15:15","end":"2025-06-28 16:00"},
+				{"name":"Nova Twins","short":"novatw(1)","start":"2025-06-28 16:30","end":"2025-06-28 17:30"},
+				{"name":"TV On The Radio","short":"tvonra(1)","start":"2025-06-28 18:00","end":"2025-06-28 19:00"},
+				{"name":"Weezer","short":"weezer(1)","start":"2025-06-28 19:30","end":"2025-06-28 20:30"},
+				{"name":"Tom Odell","short":"tomode(1)","start":"2025-06-28 21:00","end":"2025-06-28 22:00"},
+				{"name":"Scissor Sisters","short":"scisso(1)","start":"2025-06-28 22:30","end":"2025-06-28 23:45"},
+				{"name":"Westside Cowboy","short":"westsi(1)","start":"2025-06-29 11:30","end":"2025-06-29 12:15"},
+				{"name":"Gurriers","short":"gurrie(2)","start":"2025-06-29 12:45","end":"2025-06-29 13:30"},
+				{"name":"Sprints","short":"sprint(1)","start":"2025-06-29 14:00","end":"2025-06-29 15:00"},
+				{"name":"Djo","short":"djo(1)","start":"2025-06-29 15:30","end":"2025-06-29 16:30"},
+				{"name":"Black Country New Road","short":"blackc(1)","start":"2025-06-29 17:00","end":"2025-06-29 18:00"},
+				{"name":"St Vincent","short":"stvinc(1)","start":"2025-06-29 18:30","end":"2025-06-29 19:30","mbId":"5334edc0-5faf-4ca5-b1df-000de3e1f752"},
+				{"name":"AJ Tracey","short":"ajtrac(1)","start":"2025-06-29 20:00","end":"2025-06-29 21:00"},
+				{"name":"Jorja Smith","short":"jorjas(1)","start":"2025-06-29 21:30","end":"2025-06-29 22:45"}
+			]
+		},
+		{
+			"name":"The Park",
+			"events":[
+				{"name":"Wunderhorse","short":"wunder(1)","start":"2025-06-27 19:30","end":"2025-06-27 20:30"},
+				{"name":"Self Esteem","short":"selfes(1)","start":"2025-06-27 21:15","end":"2025-06-27 22:15"},
+				{"name":"Anohni & The Johnsons","short":"anohni(1)","start":"2025-06-27 23:00","end":"2025-06-28 00:15"},
+				{"name":"Beth Gibbons","short":"bethgi(1)","start":"2025-06-28 23:00","end":"2025-06-29 00:15"},
+				{"name":"The Maccabees","short":"maccab(1)","start":"2025-06-29 21:15","end":"2025-06-29 22:30"}
+			]
+		},
+		{
+			"name":"Leftfield",
+			"events":[
+				{"name":"The Meffs","short":"meffs(1)","start":"2025-06-27 16:30","end":"2025-06-27 17:05"},
+				{"name":"Gurriers","short":"gurrie(1)","start":"2025-06-27 17:35","end":"2025-06-27 18:10"},
+				{"name":"Jasmine.4.t","short":"jasmin(1)","start":"2025-06-27 18:40","end":"2025-06-27 19:20"},
+				{"name":"Antony Szmierek","short":"antony(1)","start":"2025-06-27 19:50","end":"2025-06-27 20:30"},
+				{"name":"Billy Bragg","short":"billyb(1)","start":"2025-06-27 21:00","end":"2025-06-27 22:00"},
+				{"name":"Girlband!","short":"girlba(1)","start":"2025-06-28 16:30","end":"2025-06-28 17:05"},
+				{"name":"Chloe Slater","short":"chloes(1)","start":"2025-06-28 17:35","end":"2025-06-28 18:10"},
+				{"name":"The Guest List","short":"guestl(1)","start":"2025-06-28 18:40","end":"2025-06-28 19:20"},
+				{"name":"Lambrini Girls","short":"lambri(1)","start":"2025-06-28 19:50","end":"2025-06-28 20:30"},
+				{"name":"Kate Nash","short":"katena(1)","start":"2025-06-28 21:00","end":"2025-06-28 22:00"},
+				{"name":"The Halfway Kid","short":"halfwa(1)","start":"2025-06-29 16:30","end":"2025-06-29 17:05"},
+				{"name":"Du Blonde","short":"dublon(1)","start":"2025-06-29 17:30","end":"2025-06-29 18:05"},
+				{"name":"Red Rum Club","short":"redrum(1)","start":"2025-06-29 18:30","end":"2025-06-29 19:15"},
+				{"name":"Reverend & The Makers","short":"revere(1)","start":"2025-06-29 19:45","end":"2025-06-29 20:30"},
+				{"name":"Grandson","short":"grands(1)","start":"2025-06-29 21:00","end":"2025-06-29 22:00"}
+			]
+		}
+	]
+}
