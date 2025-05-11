@@ -2,6 +2,9 @@
 ## by Riley Ramone, Ticketlab
 
 # Changelog
+### 2025-05-11: v2.2
+- Updates app logos and references to 2025
+
 ### 2024-06-23: v2.1.1
 - Adds "about this app" link to footer
 

@@ -65,7 +65,7 @@ function Intro(props: {data: Data}) {
     <footer>
       <hr/>
       <div style={{float: 'left'}}>
-        v1.2 &nbsp;
+        v2.2 &nbsp;
       <a
         style={{textAlign: 'center'}}
         href="https://github.com/Rillus/glasto/"
