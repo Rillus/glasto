@@ -41,32 +41,32 @@ const Acts: React.FC<ActsProps> = ({data}) => {
   const dayTimes: DayTimes = useMemo(() => {
     return {
       all: {
-        start: new Date('2024-06-26T00:00:00.000Z'),
-        end: new Date('2024-07-01T12:00:00.000Z')
+        start: new Date('2025-06-25T00:00:00.000Z'),
+        end: new Date('2025-06-31T12:00:00.000Z')
       },
       wed: {
-        start: new Date('2024-06-26T00:00:00.000Z'),
-        end: new Date('2024-06-27T05:00:00.000Z')
+        start: new Date('2025-06-25T00:00:00.000Z'),
+        end: new Date('2025-06-26T05:00:00.000Z')
       },
       thu: {
-        start: new Date('2024-06-27T00:00:00.000Z'),
-        end: new Date('2024-06-28T05:00:00.000Z')
+        start: new Date('2025-06-26T00:00:00.000Z'),
+        end: new Date('2025-06-27T05:00:00.000Z')
       },
       fri: {
-        start: new Date('2024-06-28T00:00:00.000Z'),
-        end: new Date('2024-06-29T05:00:00.000Z')
+        start: new Date('2025-06-27T00:00:00.000Z'),
+        end: new Date('2025-06-28T05:00:00.000Z')
       },
       sat: {
-        start: new Date('2024-06-29T00:00:00.000Z'),
-        end: new Date('2024-06-30T05:00:00.000Z')
+        start: new Date('2025-06-28T00:00:00.000Z'),
+        end: new Date('2025-06-29T05:00:00.000Z')
       },
       sun: {
-        start: new Date('2024-06-30T00:00:00.000Z'),
-        end: new Date('2024-06-31T05:00:00.000Z')
+        start: new Date('2025-06-29T00:00:00.000Z'),
+        end: new Date('2025-06-30T05:00:00.000Z')
       },
       mon: {
-        start: new Date('2024-06-31T00:00:00.000Z'),
-        end: new Date('2024-07-01T12:00:00.000Z')
+        start: new Date('2025-06-30T00:00:00.000Z'),
+        end: new Date('2025-06-31T12:00:00.000Z')
       }
     }
   }, []);

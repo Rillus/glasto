@@ -77,10 +77,10 @@ function App() {
 
   // fetch data
   useEffect(() => {
-    fetch('/g2024.json')
+    fetch('/g2025.json')
       .then(response => response.json())
       .then(incomingData => {
-        console.log('data got!');
+        console.log('data got!', incomingData);
         setData(incomingData);
       });
   }, []);
