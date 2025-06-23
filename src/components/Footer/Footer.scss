@@ -1,0 +1,47 @@
+@import "../../styles/variables";
+
+.Footer {
+  margin-top: auto; // This pushes the footer to the bottom
+  padding: $spacer;
+  background: rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+  hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0 0 $spacer 0;
+  }
+  
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $spacer;
+    
+    @media (max-width: 600px) {
+      flex-direction: column;
+      text-align: center;
+      gap: calc($spacer / 2);
+    }
+  }
+  
+  &-left {
+    font-size: 14px;
+    opacity: 0.8;
+    
+    a {
+      color: var(--backgroundContrast);
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  &-right {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+} 

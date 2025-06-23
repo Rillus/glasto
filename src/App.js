@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, Routes, Route} from 'react-router-dom';
 
 import './styles/index.scss';
+import './App.scss';
 import Nav from "./components/Nav/Nav";
 import Intro from "./components/Intro/Intro";
 import Stages from "./components/Stages/Stages";
@@ -11,6 +12,7 @@ import Act from "./components/Act/Act";
 import Maps from "./components/Maps/Maps";
 import Shared from "./components/Shared/Shared";
 import OfflineIndicator from "./components/OfflineIndicator/OfflineIndicator";
+import Footer from "./components/Footer/Footer";
 
 // data provider for the app
 // import defaultData from './public/g2024.json';
@@ -78,11 +80,24 @@ function App() {
 
   // fetch data
   useEffect(() => {
-    fetch('/g2025.json')
+    fetch('https://glasto-lineup.vercel.app/api/lineup-data')
       .then(response => response.json())
-      .then(incomingData => {
-        console.log('data got!', incomingData);
-        setData(incomingData);
+      .then(apiResponse => {
+        console.log('data got!', apiResponse.data);
+        setData(apiResponse.data); // Access nested data property
+      })
+      .catch(error => {
+        console.error('Failed to fetch lineup data:', error);
+        // Fallback to local data if API fails
+        fetch('/g2025.json')
+          .then(response => response.json())
+          .then(fallbackData => {
+            console.log('Using fallback data');
+            setData(fallbackData);
+          })
+          .catch(fallbackError => {
+            console.error('Fallback data also failed:', fallbackError);
+          });
       });
   }, []);
 
@@ -97,19 +112,22 @@ function App() {
         </h3>
         <Nav routes={routeArray} />
       </header>
-      <section className="Main">
-        <Routes>
-          {routeArray.map((route, index) => {
-            return (
-              <Route
-                key={index}
-                path={route.path}
-                element={route.element}
-              />
-            )
-          })}
-        </Routes>
-      </section>
+      <main className="App-main">
+        <section className="Main">
+          <Routes>
+            {routeArray.map((route, index) => {
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={route.element}
+                />
+              )
+            })}
+          </Routes>
+        </section>
+      </main>
+      <Footer data={data} />
     </div>
   );
 }

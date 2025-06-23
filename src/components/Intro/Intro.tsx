@@ -62,19 +62,6 @@ function Intro(props: {data: Data}) {
         <ActGrid events={savedActData} options={{showStages: true}}></ActGrid>
       </>
     )}
-    <footer>
-      <hr/>
-      <div style={{float: 'left'}}>
-        v2.2 &nbsp;
-      <a
-        style={{textAlign: 'center'}}
-        href="https://github.com/Rillus/glasto/"
-        target="_blank">About this app</a>
-      </div>
-      <div style={{float: 'right'}}>
-        Lineup updated: {props.data?.modified}
-      </div>
-    </footer>
   </div>
 }
 

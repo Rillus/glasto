@@ -1,4 +1,4 @@
-const CACHE_NAME = 'glasto2025-v5';
+const CACHE_NAME = 'glasto2025-v7';
 const FESTIVAL_DATA_CACHE = 'festival-data-v1';
 const STATIC_CACHE = 'static-resources-v1';
 const IMAGES_CACHE = 'images-v1';
@@ -10,7 +10,8 @@ const urlsToCache = [
   '/manifest.json',
   '/logo192.png',
   '/logo512.png',
-  '/offline.html'
+  '/offline.html',
+  '/g2025.json' // Keep as fallback
 ];
 
 // Install event - cache essential resources
@@ -30,7 +31,38 @@ self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Festival data - Cache first, then network (for better offline experience)
+  // Festival data from API - Network first, then cache (for latest lineup updates)
+  if (url.hostname === 'glasto-lineup.vercel.app' && url.pathname === '/api/lineup-data') {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          // If we get a successful response, cache it and return
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(FESTIVAL_DATA_CACHE).then(cache => {
+              cache.put(request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          // If network fails (offline), try to serve from cache
+          console.log('Network failed for API, serving from cache');
+          return caches.match(request)
+            .then(cachedResponse => {
+              if (cachedResponse) {
+                console.log('Serving API data from cache');
+                return cachedResponse;
+              }
+              // If no cached API data, this will trigger the app's fallback to /g2025.json
+              throw new Error('No cached API data available');
+            });
+        })
+    );
+    return;
+  }
+
+  // Legacy festival data (fallback) - Cache first, then network
   if (url.pathname === '/g2025.json') {
     event.respondWith(
       caches.match(request)

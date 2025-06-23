@@ -2,7 +2,7 @@
 ## by Riley Ramone, Ticketlab
 
 # Changelog
-### 2025-01-XX: v2.3 - Offline PWA Enhancement
+### 2025-06-23: v2.3 - Offline PWA Enhancement
 - **Major PWA Improvements**: Enhanced offline functionality with smart caching strategies
 - **Service Worker Overhaul**: Implemented cache-first strategies for festival data and network-first for navigation
 - **Offline Experience**: App now works seamlessly offline without showing offline page when cached data is available
@@ -250,3 +250,16 @@ This is a personal project for Glastonbury Festival 2025. Feel free to fork and 
 ## License
 
 MIT License - see LICENSE file for details.
+
+## 🔄 Data Strategy
+
+The app uses a **network-first** approach for lineup data to ensure you always get the latest information:
+
+1. **Online**: Always fetches the latest data from `https://glasto-lineup.vercel.app/api/lineup-data`
+2. **Network fails**: Falls back to cached API data from previous visits
+3. **No cached API data**: Falls back to local `/g2025.json` file
+4. **Completely offline**: Serves cached app with last known data
+
+This ensures you get real-time lineup updates, schedule changes, and artist additions right up until the festival starts, while still working perfectly offline.
+
+## 🏠 Offline PWA Features
