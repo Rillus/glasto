@@ -1,6 +1,6 @@
 {
-  "short_name": "Glasto 2024",
-  "name": "Line-up, stages and maps for Glastonbury Festival 2024",
+  "short_name": "Glasto 2025",
+  "name": "Line-up, stages and maps for Glastonbury Festival 2025",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,9 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#303B4D",
+  "background_color": "#303B4D",
+  "orientation": "portrait",
+  "scope": "/",
+  "description": "Complete festival guide with offline access to lineups, stages, and maps"
 }

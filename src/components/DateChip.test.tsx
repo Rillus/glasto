@@ -15,7 +15,7 @@ test('renders DateChip with the correct day for the date', () => {
 
 test('renders DateChip with the correct time for the date', () => {
   render(<DateChip start={new Date('2024-06-08T12:05:00Z')} end={new Date('2024-06-08T13:00:00Z')} />);
-  const linkElement = screen.getByText(/12:05/i);
+  const linkElement = screen.getByText(/1:05 PM/i);
   expect(linkElement).toBeInTheDocument();
 });
 

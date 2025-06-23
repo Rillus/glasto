@@ -10,6 +10,7 @@ import Acts from "./components/Acts/Acts";
 import Act from "./components/Act/Act";
 import Maps from "./components/Maps/Maps";
 import Shared from "./components/Shared/Shared";
+import OfflineIndicator from "./components/OfflineIndicator/OfflineIndicator";
 
 // data provider for the app
 // import defaultData from './public/g2024.json';
@@ -87,6 +88,7 @@ function App() {
 
   return (
     <div className="App">
+      <OfflineIndicator />
       <header className="App-header Header">
         <h3 className="Header-logo">
           <Link to={'/'}>

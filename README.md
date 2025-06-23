@@ -2,6 +2,18 @@
 ## by Riley Ramone, Ticketlab
 
 # Changelog
+### 2025-01-XX: v2.3 - Offline PWA Enhancement
+- **Major PWA Improvements**: Enhanced offline functionality with smart caching strategies
+- **Service Worker Overhaul**: Implemented cache-first strategies for festival data and network-first for navigation
+- **Offline Experience**: App now works seamlessly offline without showing offline page when cached data is available
+- **Smart Offline Indicator**: Only shows when no cached content is available, providing non-intrusive user feedback
+- **Timezone Fix**: Fixed lineup times appearing an hour earlier than stated in festival data
+- **Debugging Tools**: Added comprehensive debugging utilities for service worker and cache management
+- **Enhanced Offline Page**: Improved offline fallback page with better information about available features
+- **Cache Management**: Implemented separate caches for different content types (festival data, static resources, images)
+- **Service Worker Updates**: Added automatic update detection and manual update utilities
+- **Documentation**: Added detailed debugging section to README with troubleshooting commands
+
 ### 2025-05-11: v2.2
 - Updates app logos and references to 2025
 
@@ -82,3 +94,159 @@
 - Add custom notes to stages
 - Add custom acts to stages with time and date
 - Add custom stages
+
+# Glasto 2025
+
+Line-up, stages and maps for Glastonbury Festival 2025
+
+## Features
+
+- **Complete Festival Guide**: Browse all stages, acts, and performance times
+- **Personal Lineup**: Save your favourite acts and create a personalised schedule
+- **Interactive Maps**: Navigate the festival site with detailed maps
+- **Share Lineups**: Share your custom lineup with friends
+- **Offline Support**: Works offline with cached festival data and saved lineups
+
+## Offline Functionality
+
+This app is a Progressive Web App (PWA) that works offline:
+
+### What Works Offline
+- ✅ Your saved lineup and favourite acts
+- ✅ Festival data (stages, acts, times) - cached for 24 hours
+- ✅ App interface and navigation
+- ✅ Basic functionality for browsing acts and stages
+
+### Offline Features
+- **Smart Caching**: Festival data is cached when you first visit and updated when online
+- **Offline Indicator**: Shows when you're offline with a helpful message
+- **Fallback Page**: Custom offline page when completely disconnected
+- **Persistent Storage**: Your saved acts are stored locally and available offline
+
+### How to Use Offline
+1. Visit the app once while online to cache the festival data
+2. Your saved lineup will be available offline
+3. Browse acts and stages even without internet connection
+4. Changes to your lineup will sync when you're back online
+
+## Development
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+```bash
+npm install
+```
+
+### Running the App
+```bash
+# Development
+npm start
+
+# Production build
+npm run build
+
+# Run tests
+npm test
+```
+
+### PWA Features
+The app includes:
+- Service Worker for offline caching
+- Web App Manifest for installation
+- Offline fallback pages
+- Responsive design for mobile devices
+
+## Testing Offline Functionality
+
+1. Build the app: `npm run build`
+2. Serve the build folder: `npx serve -s build`
+3. Open in browser and visit the app
+4. Open DevTools → Application → Service Workers to see the service worker
+5. Go offline in DevTools → Network → Offline
+6. Refresh the page - the app should still work!
+
+## Debugging Commands
+
+The app includes several debugging utilities that can be run from the browser console to help troubleshoot offline functionality and service worker issues.
+
+### Service Worker Management
+```javascript
+// Force update the service worker (useful when testing changes)
+window.forceServiceWorkerUpdate()
+
+// Check for service worker updates
+window.checkForServiceWorkerUpdates()
+
+// Inspect all caches and their contents
+window.inspectCaches()
+
+// Clear all caches (useful for testing from scratch)
+window.clearAllCaches()
+```
+
+### Common Debugging Scenarios
+
+#### **Service Worker Not Updating**
+If you've made changes to the service worker but they're not taking effect:
+```javascript
+// 1. Force update the service worker
+window.forceServiceWorkerUpdate()
+
+// 2. Or manually unregister in DevTools:
+// Application → Service Workers → Unregister
+```
+
+#### **Offline Page Appearing When It Shouldn't**
+If the app is showing the offline page when you have cached data:
+```javascript
+// 1. Check what's in your caches
+window.inspectCaches()
+
+// 2. Clear all caches and start fresh
+window.clearAllCaches()
+
+// 3. Reload the page to rebuild cache
+location.reload()
+```
+
+#### **Testing Offline Functionality**
+To test the offline experience:
+1. Visit the app while online to cache data
+2. Open DevTools → Network → Offline
+3. Refresh the page
+4. The app should work normally with cached content
+
+#### **Checking Cache Contents**
+To see exactly what's stored in your caches:
+```javascript
+// This will log all cache names and their contents
+window.inspectCaches()
+```
+
+### Manual Service Worker Management
+If the debugging commands don't work, you can manually manage the service worker:
+
+1. **Open DevTools** (F12)
+2. **Go to Application tab**
+3. **Click "Service Workers" in the left sidebar**
+4. **Click "Unregister" to remove the old service worker**
+5. **Refresh the page** to register the new one
+
+### Cache Storage Management
+To manually inspect or clear caches:
+1. **Open DevTools** (F12)
+2. **Go to Application tab**
+3. **Click "Storage" in the left sidebar**
+4. **Expand "Cache Storage"**
+5. **Right-click on cache names to delete them**
+
+## Contributing
+
+This is a personal project for Glastonbury Festival 2025. Feel free to fork and modify for your own festival needs.
+
+## License
+
+MIT License - see LICENSE file for details.

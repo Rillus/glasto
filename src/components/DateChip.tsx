@@ -1,11 +1,10 @@
 export default function DateChip(props: { start: Date, end: Date }) {
-  let startDate = new Date(props.start);
-  let startDateOffset = startDate.getTimezoneOffset() * 60000;
-  startDate = new Date(startDate.getTime() + startDateOffset);
+  // The festival times are already in BST (British Summer Time)
+  // No need for timezone offset calculations as they're already in the correct timezone
+  const startDate = new Date(props.start);
+  const endDate = new Date(props.end);
+  
   const startDay = startDate.toLocaleDateString('en', {weekday: 'short'});
-  let endDate = new Date(props.end);
-  let endDateOffset = endDate.getTimezoneOffset() * 60000;
-  endDate = new Date(endDate.getTime() + endDateOffset);
   const endDay = endDate.toLocaleDateString('en', {weekday: 'short'});
 
   function dayChip(day: string) {

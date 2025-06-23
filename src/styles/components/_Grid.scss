@@ -55,6 +55,10 @@
       display: flex;
       column-gap: $spacer;
       justify-content: space-between;
+      
+      @media (max-width: $break-md) {
+        padding: $spacer 0;
+      }
 
       .StageChip {
         width: 200px;
@@ -64,6 +68,10 @@
 
       .ActChip {
         flex: auto;
+
+        @media (min-width: $break-md) {
+          max-width: calc(100% - 527px);
+        }
       }
 
       @media (max-width: $break-md) {

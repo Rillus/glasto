@@ -44,14 +44,13 @@ function Maps () {
 
   function getMap(type: string) {
     switch (type) {
-      case 'official':
-        return '/images/Glastonbury_Public_Map_2024_V1.1_web_large.png';
       case 'tube':
         return '/images/glastonderground.jpeg';
-      case '1979':
-        return '/images/glastonbury-fayre-1979.jpeg';
+        case '1979':
+          return '/images/glastonbury-fayre-1979.jpeg';
+      case 'official':
       default:
-        return '/images/Glastonbury_Public_Map_2024_V1.1_web_large.png';
+        return '/images/Glastonbury_Map_2025.png';
     }
   }
 
