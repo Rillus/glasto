@@ -1,4 +1,4 @@
-const CACHE_NAME = 'glasto2025-v4';
+const CACHE_NAME = 'glasto2025-v5';
 const FESTIVAL_DATA_CACHE = 'festival-data-v1';
 const STATIC_CACHE = 'static-resources-v1';
 const IMAGES_CACHE = 'images-v1';
@@ -108,15 +108,16 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Navigation requests - Network first, then cache (prevents offline page from being cached)
+  // Navigation requests - For SPAs, all routes should serve the main index.html
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
         .then(response => {
-          // Only cache successful responses that aren't the offline page
-          if (response.status === 200 && !response.url.includes('offline.html')) {
+          // For SPAs, we want to cache the main index.html for all navigation requests
+          if (response.status === 200) {
             const responseClone = response.clone();
             caches.open(CACHE_NAME).then(cache => {
+              // Cache the response for this specific URL
               cache.put(request, responseClone);
             });
           }
@@ -129,8 +130,16 @@ self.addEventListener('fetch', event => {
               if (cachedResponse) {
                 return cachedResponse;
               }
-              // Only show offline page as absolute last resort
-              return caches.match('/offline.html');
+              // If no cached version of this specific route, serve the main index.html
+              // This allows React Router to handle the routing on the client side
+              return caches.match('/')
+                .then(indexResponse => {
+                  if (indexResponse) {
+                    return indexResponse;
+                  }
+                  // Only show offline page as absolute last resort
+                  return caches.match('/offline.html');
+                });
             });
         })
     );
