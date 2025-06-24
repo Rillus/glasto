@@ -5,11 +5,15 @@ import ActGrid from "../ActGrid";
 import Url from "../../helpers/url";
 import {useParams} from "react-router-dom";
 import {Data, Location} from "../../../types/act";
+import HidePastActsToggle from "../HidePastActsToggle/HidePastActsToggle";
+import useHidePastActs from "../../hooks/useHidePastActs";
+import { filterPastActs } from "../../utils/actFilters";
 
 function Stage(props: {data: Data}) {
   const { name } = useParams();
   const url = name
   const data = props.data;
+  const { hidePastActs, toggleHidePastActs } = useHidePastActs();
 
   const [stage, setStage] = React.useState<Location | null>(null);
 
@@ -43,11 +47,29 @@ function Stage(props: {data: Data}) {
     </div>
   }
 
+  // Filter past acts if the setting is enabled
+  const filteredEvents = filterPastActs(stage.events, hidePastActs);
+
   return <div>
-      <h1 className="u-text-center">
-        <StageChip name={stage.name} id={stage.id} />
-      </h1>
-      <ActGrid events={stage.events}/>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: '1fr auto 1fr', 
+        alignItems: 'center', 
+        marginBottom: '1rem',
+        gap: '1rem'
+      }}>
+        <div></div>
+        <h1 className="u-text-center" style={{ margin: 0 }}>
+          <StageChip name={stage.name} id={stage.id} />
+        </h1>
+        <div style={{ justifySelf: 'end' }}>
+          <HidePastActsToggle 
+            hidePastActs={hidePastActs} 
+            onToggle={toggleHidePastActs} 
+          />
+        </div>
+      </div>
+      <ActGrid events={filteredEvents}/>
     </div>
 }
 

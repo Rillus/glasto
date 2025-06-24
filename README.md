@@ -14,7 +14,10 @@
 - **Service Worker Updates**: Added automatic update detection and manual update utilities
 - **Documentation**: Added detailed debugging section to README with troubleshooting commands
 
-### 2025-06-23: v2.5
+### 2025-06-24: v2.6
+- Show/hide past acts
+
+### 2025-06-24: v2.5
 - Allow act view and search by "all" days
 
 ### 2025-06-23: v2.4

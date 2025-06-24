@@ -1,0 +1,43 @@
+@import "../../styles/variables";
+
+.HidePastActsToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  background: var(--primary);
+  color: var(--primaryContrast);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  height: 38px;
+
+  &:hover {
+    background: var(--primaryContrast);
+    color: var(--primary);
+  }
+
+  &-icon {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  &-text {
+    font-weight: 500;
+    
+    // Hide text on very small screens
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  // Compact version for mobile
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+    min-width: 2.5rem;
+    justify-content: center;
+  }
+} 

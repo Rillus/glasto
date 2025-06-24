@@ -2,6 +2,9 @@ import React, {ReactElement, useEffect, useMemo, useState, useRef} from "react";
 import ActGrid from "../ActGrid";
 import {Loader} from "../Loader";
 import styles from "./Acts.module.scss";
+import HidePastActsToggle from "../HidePastActsToggle/HidePastActsToggle";
+import useHidePastActs from "../../hooks/useHidePastActs";
+import { filterPastActs } from "../../utils/actFilters";
 
 // import types
 import {EventType, Data} from "../../../types/act";
@@ -26,6 +29,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
   const [search, setSearch] = useState<string>(useParams().search ?? '');
   const [errorMessage, setErrorMessage] = useState<string>('')
   const mainElement = useRef<HTMLElement>(null);
+  const { hidePastActs, toggleHidePastActs } = useHidePastActs();
 
   let defaultPageAsString = useParams().page;
   let defaultPage: number;
@@ -94,7 +98,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
       })
       .flat();
 
-    const allActs: EventType[] = dataActs
+    let allActs: EventType[] = dataActs
       .filter((act) => {
         if (search) {
           return act.name.toLowerCase().includes(search.toLowerCase());
@@ -126,6 +130,9 @@ const Acts: React.FC<ActsProps> = ({data}) => {
         return aStart - bStart;
       });
 
+    // Filter past acts if the setting is enabled
+    allActs = filterPastActs(allActs, hidePastActs);
+
     const totalPageCount = Math.ceil(allActs.length / take);
 
     if (totalPages === 0 || totalPages !== totalPageCount) {
@@ -147,7 +154,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
     if (allActs.length === 0) {
       setErrorMessage('No results found');
     }
-  }, [data, selectedDay, search, page, dayTimes, totalPages]);
+  }, [data, selectedDay, search, page, dayTimes, totalPages, hidePastActs]);
 
   // lazy load next page when scrolled to the bottom
   useEffect(() => {
@@ -265,6 +272,11 @@ const Acts: React.FC<ActsProps> = ({data}) => {
       >
         &times;
       </button>
+
+      <HidePastActsToggle 
+        hidePastActs={hidePastActs} 
+        onToggle={toggleHidePastActs} 
+      />
     </div>
 
     <ActGrid

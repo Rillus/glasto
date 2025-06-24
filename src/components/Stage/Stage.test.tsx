@@ -6,61 +6,61 @@ import {Data} from "../../../types/act";
 import {MemoryRouter, Route, Routes} from "react-router-dom";
 
 describe("Stage", () => {
-  const actsData: Data = {
+  const stageData: Data = {
     locations: [
       {
         id: 1,
-        name: "Main Stage",
+        name: 'Main Stage',
         events: [
           {
+            id: 3,
+            name: 'The Sky at Night',
+            short: 'night',
+            description: 'The Sky at Night is a band from the UK',
+            image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
+            spotify: '',
+            youtube: '',
+            instagram: '',
+            facebook: '',
+            twitter: '',
+            soundcloud: '',
+            website: '',
+            start: '2025-12-26 13:00',
+            end: '2025-12-26 13:30',
+          },
+          {
             id: 1,
-            name: "The Sky at Day",
+            name: 'The Sky at Day',
             short: 'day',
-            description: "The Sky at Day is a band from the UK",
-            image: "https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b",
-            spotify: "",
-            youtube: "",
-            instagram: "",
-            facebook: "",
-            twitter: "",
-            soundcloud: "",
-            website: "",
-            start: "2024-06-26T12:00:00Z",
-            end: "2024-06-26T12:30:00Z",
+            description: 'The Sky at Day is a band from the UK',
+            image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
+            spotify: '',
+            youtube: '',
+            instagram: '',
+            facebook: '',
+            twitter: '',
+            soundcloud: '',
+            website: '',
+            start: '2025-12-26 12:00',
+            end: '2025-12-26 12:30',
           },
           {
             id: 2,
-            name: "Yoga like water",
-            short: 'water',
-            description: "Yoga like water is a band from the UK",
-            image: "https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b",
-            spotify: "",
-            youtube: "",
-            instagram: "",
-            facebook: "",
-            twitter: "",
-            soundcloud: "",
-            website: "",
-            start: "2024-06-26T12:30:00Z",
-            end: "2024-06-26T13:00:00Z",
+            name: 'Yoga like water',
+            short: 'yoga',
+            description: 'Yoga like water is a band from the UK',
+            image: 'https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b',
+            spotify: '',
+            youtube: '',
+            instagram: '',
+            facebook: '',
+            twitter: '',
+            soundcloud: '',
+            website: '',
+            start: '2025-12-26 14:00',
+            end: '2025-12-26 14:30',
           },
-          {
-            id: 3,
-            name: "The Sky at Night",
-            short: 'night',
-            description: "The Sky at Night is a band from the UK",
-            image: "https://images.unsplash.com/photo-1631149170000-7b3b3b3b3b3b",
-            spotify: "",
-            youtube: "",
-            instagram: "",
-            facebook: "",
-            twitter: "",
-            soundcloud: "",
-            website: "",
-            start: "2024-06-26T13:00:00Z",
-            end: "2024-06-26T13:30:00Z",
-          },
-        ],
+        ]
       },
       {
         id: 2,
@@ -117,13 +117,14 @@ describe("Stage", () => {
         ],
       }
     ],
+    modified: '2025-01-01 00:00'
   };
 
   it("should render the stage", async () => {
     render(
       <MemoryRouter initialEntries={['/stage/main-stage']}>
         <Routes>
-          <Route path="/stage/:name" element={<Stage data={actsData} />} />
+          <Route path="/stage/:name" element={<Stage data={stageData} />} />
         </Routes>
       </MemoryRouter>
     );
@@ -136,7 +137,7 @@ describe("Stage", () => {
     render(
       <MemoryRouter initialEntries={['/stage/main-stage']}>
         <Routes>
-          <Route path="/stage/:name" element={<Stage data={actsData}/>} />
+          <Route path="/stage/:name" element={<Stage data={stageData}/>} />
         </Routes>
       </MemoryRouter>
     );
@@ -149,7 +150,7 @@ describe("Stage", () => {
     render(
       <MemoryRouter initialEntries={['/stage/unknown-stage']}>
         <Routes>
-          <Route path="/stage/:name" element={<Stage data={actsData}/>} />
+          <Route path="/stage/:name" element={<Stage data={stageData}/>} />
         </Routes>
       </MemoryRouter>
     );
@@ -161,7 +162,7 @@ describe("Stage", () => {
     render(
       <MemoryRouter initialEntries={['/stage/second-stage']}>
         <Routes>
-          <Route path="/stage/:name" element={<Stage data={actsData}/>} />
+          <Route path="/stage/:name" element={<Stage data={stageData}/>} />
         </Routes>
       </MemoryRouter>
     );

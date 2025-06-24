@@ -1,0 +1,116 @@
+# Glastonbury Festival 2025 PWA - Cursor AI Rules
+
+## Project Context
+This is a Progressive Web App (PWA) for Glastonbury Festival 2025, built with React. It helps festival-goers manage their lineup, discover acts, and navigate stages during the festival.
+
+## Key Features & Architecture
+- **Core Pages**: My Lineup (saved acts), Acts (browse/search), Stages (venue-specific)
+- **Data Structure**: Acts have `start`/`end` times, belong to `locations` (stages)
+- **Offline-First**: PWA with service worker, works without internet
+- **LocalStorage**: Saves user preferences (saved acts, settings)
+- **Hide Past Acts**: Toggle feature to filter out ended performances
+
+## Code Style & Standards
+- **Language**: British English (favour, colour, realise, etc.)
+- **Development**: Test-Driven Development (TDD) - write tests first
+- **React**: Functional components with hooks, TypeScript where applicable
+- **File Structure**: Components in folders with index files, tests alongside
+- **CSS**: Responsive design, mobile-first approach
+- **Imports**: Relative imports for local files, absolute for node_modules
+
+## Festival-Specific Requirements
+- **Time Handling**: Use British Summer Time (BST), handle midnight transitions
+- **Performance**: Optimise for mobile devices with poor connectivity
+- **Accessibility**: Festival environment may have bright sunlight, consider contrast
+- **Battery Life**: Minimise resource usage for long festival days
+- **User Experience**: Quick access to saved acts, easy search/filter
+
+## Testing Guidelines
+- **Dynamic Dates**: Never use hardcoded future dates in tests - use generated dates
+- **Mock Time**: Use `jest.useFakeTimers()` for time-dependent tests
+- **Edge Cases**: Test midnight transitions, invalid data, offline scenarios
+- **Mobile Testing**: Consider touch interactions, small screens
+- **Performance**: Test with large datasets (500+ acts)
+
+## Common Patterns
+- **Hook Pattern**: `useHidePastActs()` for localStorage state management
+- **Filter Pattern**: `filterPastActs(acts, shouldHide)` for conditional filtering
+- **Component Pattern**: Reusable components with responsive design
+- **Error Handling**: Graceful degradation, don't crash on bad data
+
+## Data Types
+```typescript
+interface Act {
+  id: number;
+  name: string;
+  short: string; // URL-safe identifier
+  start: string; // "YYYY-MM-DD HH:MM" format
+  end: string;
+  // ... other properties
+}
+
+interface Location {
+  id: number;
+  name: string; // Stage name
+  events: Act[];
+}
+```
+
+## Naming Conventions
+- **Components**: PascalCase (e.g., `HidePastActsToggle`)
+- **Hooks**: camelCase starting with 'use' (e.g., `useHidePastActs`)
+- **Utilities**: camelCase (e.g., `filterPastActs`)
+- **CSS Classes**: SUIT CSS methodology (e.g., `ToggleButton`, `ToggleButton-icon`, `ToggleButton--active`)
+- **LocalStorage Keys**: camelCase (e.g., `hidePastActs`, `act_${actShort}`)
+
+## CSS Standards
+- **Methodology**: Follow SUIT CSS conventions for class naming
+- **Component Classes**: PascalCase (e.g., `ActGrid`, `StageChip`)
+- **Sub-components**: Use single hyphen (e.g., `ActGrid-item`, `StageChip-name`)
+- **Modifiers**: Use double hyphen (e.g., `ToggleButton--active`, `ActChip--saved`)
+- **Utilities**: Prefix with `u-` (e.g., `u-textCenter`, `u-hidden`)
+- **No Inline Styles**: Use CSS classes instead of inline styles for maintainability
+- **CSS Modules**: Preferred for component-specific styles when available
+
+## Performance Considerations
+- **Lazy Loading**: Load components/data as needed
+- **Memoization**: Use React.memo for expensive renders
+- **Virtual Scrolling**: For large lists of acts
+- **Image Optimisation**: Compress act images, use appropriate formats
+- **Bundle Size**: Keep dependencies minimal
+
+## Mobile & PWA Best Practices
+- **Touch Targets**: Minimum 44px for interactive elements
+- **Viewport**: Responsive design, no horizontal scroll
+- **Offline**: Handle network failures gracefully
+- **Install Prompt**: Guide users to add to home screen
+- **Fast Loading**: Optimise critical rendering path
+
+## Common Issues to Avoid
+- **Date Bugs**: Always consider timezone, use consistent date formats
+- **Memory Leaks**: Clean up event listeners, avoid circular references
+- **Accessibility**: Include proper ARIA labels, keyboard navigation
+- **Performance**: Don't block main thread, use web workers for heavy tasks
+- **Storage Limits**: Handle localStorage quota exceeded errors
+
+## When Making Changes
+1. **Write tests first** (TDD approach)
+2. **Consider mobile users** (primary use case)
+3. **Handle edge cases** (bad network, invalid data)
+4. **Test with realistic data** (full festival lineup)
+5. **Check accessibility** (screen readers, keyboard nav)
+6. **Verify PWA functionality** (offline, install)
+
+## Debugging Tips
+- **Console Logs**: Remove before production
+- **Error Boundaries**: Catch React errors gracefully  
+- **Network Tab**: Monitor API calls and resource loading
+- **Application Tab**: Check service worker and storage
+- **Lighthouse**: Regular PWA and performance audits
+
+## Festival Context Awareness
+- **Peak Usage**: Friday-Monday during festival weekend
+- **User State**: Likely tired, possibly intoxicated, in crowded/noisy environment
+- **Device Conditions**: Low battery, poor signal, bright sunlight
+- **User Goals**: Quick access to "what's on now", navigate to stages, plan schedule
+- **Critical Features**: Saved acts list, current time filtering, offline functionality 

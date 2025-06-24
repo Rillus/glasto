@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook, act } from '@testing-library/react';
 import { useOffline } from './useOffline';
 
 // Mock navigator.onLine
@@ -37,14 +37,18 @@ describe('useOffline', () => {
     
     // Simulate going offline
     mockNavigator.onLine = false;
-    window.dispatchEvent(new Event('offline'));
+    act(() => {
+      window.dispatchEvent(new Event('offline'));
+    });
     rerender();
     
     expect(result.current).toBe(true);
     
     // Simulate going back online
     mockNavigator.onLine = true;
-    window.dispatchEvent(new Event('online'));
+    act(() => {
+      window.dispatchEvent(new Event('online'));
+    });
     rerender();
     
     expect(result.current).toBe(false);
