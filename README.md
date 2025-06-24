@@ -14,6 +14,16 @@
 - **Service Worker Updates**: Added automatic update detection and manual update utilities
 - **Documentation**: Added detailed debugging section to README with troubleshooting commands
 
+### 2025-06-23: v2.5
+- Allow act view and search by "all" days
+
+### 2025-06-23: v2.4
+- New API source for data for easy remote lineup updates
+
+### 2025-06-23: v2.3
+- PWA enhancemets
+- Footer update
+
 ### 2025-05-11: v2.2
 - Updates app logos and references to 2025
 
@@ -101,11 +111,17 @@ Line-up, stages and maps for Glastonbury Festival 2025
 
 ## Features
 
-- **Complete Festival Guide**: Browse all stages, acts, and performance times
-- **Personal Lineup**: Save your favourite acts and create a personalised schedule
-- **Interactive Maps**: Navigate the festival site with detailed maps
-- **Share Lineups**: Share your custom lineup with friends
-- **Offline Support**: Works offline with cached festival data and saved lineups
+- **📱 Progressive Web App**: Install on your phone for native app experience
+- **🔄 Offline Support**: Works without internet connection using smart caching
+- **🎭 Browse Acts**: View all festival acts with search and filtering
+  - **🆕 "All" Button**: View acts from all days at once for comprehensive searching
+  - **📅 Day Filtering**: Filter by specific festival days (Wed-Mon)
+  - **🔍 Smart Search**: Find acts with 3+ character search
+- **🎪 Stage Information**: Explore different festival stages and their lineups
+- **⭐ Personal Lineup**: Create and manage your custom festival schedule
+- **🗺️ Festival Maps**: Navigate the festival grounds
+- **📤 Share Lineups**: Share your personal lineup with friends
+- **🌐 Live Data**: Always get the latest lineup updates from our festival API
 
 ## Offline Functionality
 

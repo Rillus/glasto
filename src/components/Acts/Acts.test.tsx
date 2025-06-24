@@ -25,8 +25,8 @@ const actsData: Data = {
           twitter: '',
           soundcloud: '',
           website: '',
-          start: '2024-06-26T13:00:00Z',
-          end: '2024-06-26T13:30:00Z',
+          start: '2025-06-26 13:00',
+          end: '2025-06-26 13:30',
         },
         {
           id: 1,
@@ -41,8 +41,8 @@ const actsData: Data = {
           twitter: '',
           soundcloud: '',
           website: '',
-          start: '2024-06-26T12:00:00Z',
-          end: '2024-06-26T12:30:00Z',
+          start: '2025-06-26 12:00',
+          end: '2025-06-26 12:30',
         },
         {
           id: 2,
@@ -57,8 +57,8 @@ const actsData: Data = {
           twitter: '',
           soundcloud: '',
           website: '',
-          start: '2024-06-26T12:30:00Z',
-          end: '2024-06-26T13:00:00Z',
+          start: '2025-06-26 12:30',
+          end: '2025-06-26 13:00',
         },
       ],
     },
@@ -79,8 +79,8 @@ const actsData: Data = {
           twitter: '',
           soundcloud: '',
           website: '',
-          start: '2024-06-26T12:00:00Z',
-          end: '2024-06-26T12:30:00Z',
+          start: '2025-06-26 12:00',
+          end: '2025-06-26 12:30',
         },
       ],
     },
@@ -207,6 +207,35 @@ describe('Acts component', () => {
     expect(acts[3]).toHaveTextContent('The Sky at Night');
   });
 
+  it('should show all day buttons including "all"', () => {
+    render(
+      <BrowserRouter>
+        <Acts data={actsData} />
+      </BrowserRouter>
+    );
+
+    // Check that all day buttons are present
+    const allButton = screen.getByText('all');
+    const wedButton = screen.getByText('wed');
+    const thuButton = screen.getByText('thu');
+    const friButton = screen.getByText('fri');
+    const satButton = screen.getByText('sat');
+    const sunButton = screen.getByText('sun');
+    const monButton = screen.getByText('mon');
+
+    expect(allButton).toBeInTheDocument();
+    expect(wedButton).toBeInTheDocument();
+    expect(thuButton).toBeInTheDocument();
+    expect(friButton).toBeInTheDocument();
+    expect(satButton).toBeInTheDocument();
+    expect(sunButton).toBeInTheDocument();
+    expect(monButton).toBeInTheDocument();
+
+    // "All" should be active by default
+    expect(allButton).not.toHaveClass('isInactive');
+    expect(wedButton).toHaveClass('isInactive');
+  });
+
   it('should load more acts when the user scrolls to the bottom of the page', () => {
     // fill new act data with 30 acts
     const newActData: Data = {
@@ -237,8 +266,8 @@ describe('Acts component', () => {
             twitter: '',
             soundcloud: '',
             website: '',
-            start: '2024-06-26T12:00:00Z',
-            end: '2024-06-26T12:30:00Z',
+            start: '2025-06-26 12:00',
+            end: '2025-06-26 12:30',
           },
         ];
       }

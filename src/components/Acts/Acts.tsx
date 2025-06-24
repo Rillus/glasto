@@ -22,7 +22,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [acts, setActs] = useState<EventType[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const [selectedDay, setSelectedDay] = useState<string>(useParams().day ?? 'wed');
+  const [selectedDay, setSelectedDay] = useState<string>(useParams().day ?? 'all');
   const [search, setSearch] = useState<string>(useParams().search ?? '');
   const [errorMessage, setErrorMessage] = useState<string>('')
   const mainElement = useRef<HTMLElement>(null);
@@ -196,7 +196,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
   }
 
   function DaySelector() : ReactElement {
-    const days = ['wed', 'thu', 'fri', 'sat', 'sun', 'mon'];
+    const days = ['all', 'wed', 'thu', 'fri', 'sat', 'sun', 'mon'];
 
     let dayClass = (day: string) => {
       let daySelectorClass = 'Button DateChip-day DateChip-day--';
@@ -260,7 +260,7 @@ const Acts: React.FC<ActsProps> = ({data}) => {
         className={`Button ${styles.Acts_clearButton}`}
         onClick={() => {
           setSearch('');
-          setSelectedDay('wed');
+          setSelectedDay('all');
         }}
       >
         &times;

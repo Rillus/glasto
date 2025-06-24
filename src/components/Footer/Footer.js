@@ -6,7 +6,7 @@ const Footer = ({ data }) => {
     <footer className="Footer">
       <div className="Footer-content">
         <div className="Footer-left">
-          v2.4 {' '}
+          v2.5 {' '}
           <a
             href="https://github.com/Rillus/glasto/"
             target="_blank"

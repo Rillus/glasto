@@ -15,6 +15,11 @@
     margin: $spacer/2 0;
     text-transform: capitalize;
 
+    &--all {
+      background-color: var(--primary);
+      color: var(--white);
+      font-weight: bold;
+    }
     &--wed {
       background-color: var(--wed);
       color: var(--white);
