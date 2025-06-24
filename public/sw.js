@@ -31,6 +31,11 @@ self.addEventListener('fetch', event => {
   const { request } = event;
   const url = new URL(request.url);
 
+  // Only handle http and https requests
+  if (!request.url.startsWith('http')) {
+    return;
+  }
+
   // Festival data from API - Network first, then cache (for latest lineup updates)
   if (url.hostname === 'glasto-lineup.vercel.app' && url.pathname === '/api/lineup-data') {
     event.respondWith(
